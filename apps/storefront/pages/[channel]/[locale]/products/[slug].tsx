@@ -28,6 +28,7 @@ import {
 } from "@/saleor/api";
 import { serverApolloClient } from "@/lib/auth/useAuthenticatedApolloClient";
 import { useUser } from "@/lib/useUser";
+import { VariantSelectorProps } from "@/components/product/VariantSelector";
 
 export type OptionalQuery = {
   variant?: string;
@@ -66,7 +67,7 @@ export const getStaticProps = async (
     revalidate: 60, // value in seconds, how often ISR will trigger on the server
   };
 };
-function ProductPage({ product }: InferGetStaticPropsType<typeof getStaticProps>) {
+function ProductPage({ product }: VariantSelectorProps<typeof getStaticProps>) {
   const router = useRouter();
   const paths = usePaths();
   const t = useIntl();
@@ -80,6 +81,8 @@ function ProductPage({ product }: InferGetStaticPropsType<typeof getStaticProps>
   const [addProductToCheckout] = useCheckoutAddProductLineMutation();
   const [loadingAddToCheckout, setLoadingAddToCheckout] = useState(false);
   const [addToCartError, setAddToCartError] = useState("");
+  const a = [8, 7, 8];
+  const { variants } = product;
 
   if (!product?.id) {
     return <Custom404 />;
@@ -191,7 +194,12 @@ function ProductPage({ product }: InferGetStaticPropsType<typeof getStaticProps>
               >
                 <a>
                   <p className="text-md mt-2 font-medium text-gray-600 cursor-pointer">
-                    {translate(product.category, "name")}
+                    {translate(product.category, "name")}{" "}
+                    {variants.map((variant) => (
+                      <span className="grow" data-testid={`variantOf${variant.name}`}>
+                        {translate(variant, "name")}/
+                      </span>
+                    ))}
                   </p>
                 </a>
               </Link>
@@ -205,7 +213,7 @@ function ProductPage({ product }: InferGetStaticPropsType<typeof getStaticProps>
             type="submit"
             disabled={isAddToCartButtonDisabled}
             className={clsx(
-              "w-full py-3 px-8 flex items-center justify-center text-base bg-action-1 text-white disabled:bg-disabled hover:bg-white border-2 border-transparent  focus:outline-none",
+              "w-full py-3 px-8 flex items-center justify-center text-base bg-action-1 text-white disabled:bg-black hover:bg-white border-2 border-transparent  focus:outline-none",
               !isAddToCartButtonDisabled && "hover:border-action-1 hover:text-action-1"
             )}
             data-testid="addToCartButton"
