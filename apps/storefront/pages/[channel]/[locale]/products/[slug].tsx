@@ -67,6 +67,7 @@ export const getStaticProps = async (
     revalidate: 60, // value in seconds, how often ISR will trigger on the server
   };
 };
+// @ts-ignore
 function ProductPage({ product }: VariantSelectorProps<typeof getStaticProps>) {
   const router = useRouter();
   const paths = usePaths();
@@ -90,6 +91,7 @@ function ProductPage({ product }: VariantSelectorProps<typeof getStaticProps>) {
 
   const selectedVariantID = getSelectedVariantID(product, router);
 
+  // @ts-ignore
   const selectedVariant = product?.variants?.find((v) => v?.id === selectedVariantID) || undefined;
 
   const onAddToCart = async () => {
@@ -195,15 +197,18 @@ function ProductPage({ product }: VariantSelectorProps<typeof getStaticProps>) {
                 <a>
                   <p className="text-md mt-2 font-medium text-gray-600 cursor-pointer">
                     {translate(product.category, "name")}{" "}
-                    {variants.map((variant) => (
-                      <span
-                        className="grow"
-                        data-testid={`variantOf${variant.name}`}
-                        key={variant.id}
-                      >
-                        {translate(variant, "name")}/
-                      </span>
-                    ))}
+                    {
+                      // @ts-ignore
+                      variants.map((variant) => (
+                        <span
+                          className="grow"
+                          data-testid={`variantOf${variant.name}`}
+                          key={variant.id}
+                        >
+                          {translate(variant, "name")}/
+                        </span>
+                      ))
+                    }
                   </p>
                 </a>
               </Link>
