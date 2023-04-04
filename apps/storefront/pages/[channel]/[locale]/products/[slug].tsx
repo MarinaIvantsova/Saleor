@@ -83,7 +83,6 @@ function ProductPage({ product }: VariantSelectorProps<typeof getStaticProps>) {
   const [addToCartError, setAddToCartError] = useState("");
   const a = [8, 7, 8];
   const { variants } = product;
-  console.log(variants);
 
   if (!product?.id) {
     return <Custom404 />;
