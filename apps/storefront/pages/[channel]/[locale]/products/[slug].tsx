@@ -67,6 +67,7 @@ export const getStaticProps = async (
     revalidate: 60, // value in seconds, how often ISR will trigger on the server
   };
 };
+// @ts-ignore
 function ProductPage({ product }: VariantSelectorProps<typeof getStaticProps>) {
   const router = useRouter();
   const paths = usePaths();
@@ -90,6 +91,7 @@ function ProductPage({ product }: VariantSelectorProps<typeof getStaticProps>) {
 
   const selectedVariantID = getSelectedVariantID(product, router);
 
+  // @ts-ignore
   const selectedVariant = product?.variants?.find((v) => v?.id === selectedVariantID) || undefined;
 
   const onAddToCart = async () => {
@@ -195,11 +197,18 @@ function ProductPage({ product }: VariantSelectorProps<typeof getStaticProps>) {
                 <a>
                   <p className="text-md mt-2 font-medium text-gray-600 cursor-pointer">
                     {translate(product.category, "name")}{" "}
-                    {variants.map((variant) => (
-                      <span className="grow" data-testid={`variantOf${variant.name}`}>
-                        {translate(variant, "name")}/
-                      </span>
-                    ))}
+                    {
+                      // @ts-ignore
+                      variants.map((variant) => (
+                        <span
+                          className="grow"
+                          data-testid={`variantOf${variant.name}`}
+                          key={variant.id}
+                        >
+                          {translate(variant, "name")}/
+                        </span>
+                      ))
+                    }
                   </p>
                 </a>
               </Link>
@@ -213,7 +222,7 @@ function ProductPage({ product }: VariantSelectorProps<typeof getStaticProps>) {
             type="submit"
             disabled={isAddToCartButtonDisabled}
             className={clsx(
-              "w-full py-3 px-8 flex items-center justify-center text-base bg-action-1 text-white disabled:bg-black hover:bg-white border-2 border-transparent  focus:outline-none",
+              "w-full py-3 px-8 flex items-center justify-center text-base bg-action-1 text-white disabled:bg-disabled hover:bg-white border-2 border-transparent  focus:outline-none",
               !isAddToCartButtonDisabled && "hover:border-action-1 hover:text-action-1"
             )}
             data-testid="addToCartButton"
