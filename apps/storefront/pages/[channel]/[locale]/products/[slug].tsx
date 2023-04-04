@@ -83,6 +83,7 @@ function ProductPage({ product }: VariantSelectorProps<typeof getStaticProps>) {
   const [addToCartError, setAddToCartError] = useState("");
   const a = [8, 7, 8];
   const { variants } = product;
+  console.log(variants);
 
   if (!product?.id) {
     return <Custom404 />;
@@ -199,7 +200,7 @@ function ProductPage({ product }: VariantSelectorProps<typeof getStaticProps>) {
                       <span
                         className="grow"
                         data-testid={`variantOf${variant.name}`}
-                        key={variant.quantityAvailable.toString()}
+                        key={variant.id}
                       >
                         {translate(variant, "name")}/
                       </span>
