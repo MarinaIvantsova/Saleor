@@ -196,7 +196,11 @@ function ProductPage({ product }: VariantSelectorProps<typeof getStaticProps>) {
                   <p className="text-md mt-2 font-medium text-gray-600 cursor-pointer">
                     {translate(product.category, "name")}{" "}
                     {variants.map((variant) => (
-                      <span className="grow" data-testid={`variantOf${variant.name}`}>
+                      <span
+                        className="grow"
+                        data-testid={`variantOf${variant.name}`}
+                        key={variant.quantityAvailable.toString()}
+                      >
                         {translate(variant, "name")}/
                       </span>
                     ))}
@@ -213,7 +217,7 @@ function ProductPage({ product }: VariantSelectorProps<typeof getStaticProps>) {
             type="submit"
             disabled={isAddToCartButtonDisabled}
             className={clsx(
-              "w-full py-3 px-8 flex items-center justify-center text-base bg-action-1 text-white disabled:bg-black hover:bg-white border-2 border-transparent  focus:outline-none",
+              "w-full py-3 px-8 flex items-center justify-center text-base bg-action-1 text-white disabled:bg-disabled hover:bg-white border-2 border-transparent  focus:outline-none",
               !isAddToCartButtonDisabled && "hover:border-action-1 hover:text-action-1"
             )}
             data-testid="addToCartButton"
