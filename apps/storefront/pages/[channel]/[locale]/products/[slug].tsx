@@ -82,7 +82,6 @@ function ProductPage({ product }: VariantSelectorProps<typeof getStaticProps>) {
   const [addProductToCheckout] = useCheckoutAddProductLineMutation();
   const [loadingAddToCheckout, setLoadingAddToCheckout] = useState(false);
   const [addToCartError, setAddToCartError] = useState("");
-  const a = [8, 7, 8];
   const { variants } = product;
 
   if (!product?.id) {
@@ -148,6 +147,7 @@ function ProductPage({ product }: VariantSelectorProps<typeof getStaticProps>) {
 
     if (errors.length === 0) {
       // Product successfully added
+
       return;
     }
 
@@ -217,20 +217,29 @@ function ProductPage({ product }: VariantSelectorProps<typeof getStaticProps>) {
 
           <VariantSelector product={product} selectedVariantID={selectedVariantID} />
 
-          <button
-            onClick={onAddToCart}
-            type="submit"
-            disabled={isAddToCartButtonDisabled}
-            className={clsx(
-              "w-full py-3 px-8 flex items-center justify-center text-base bg-action-1 text-white disabled:bg-disabled hover:bg-white border-2 border-transparent  focus:outline-none",
-              !isAddToCartButtonDisabled && "hover:border-action-1 hover:text-action-1"
-            )}
-            data-testid="addToCartButton"
+          <Link
+            href={paths.redirect._slug(product.slug).$url()}
+            prefetch={false}
+            passHref
+            legacyBehavior
           >
-            {loadingAddToCheckout
-              ? t.formatMessage(messages.adding)
-              : t.formatMessage(messages.addToCart)}
-          </button>
+            <a href="pass">
+              <button
+                onClick={onAddToCart}
+                type="submit"
+                disabled={isAddToCartButtonDisabled}
+                className={clsx(
+                  "w-full py-3 px-8 flex items-center justify-center text-base bg-action-1 text-white disabled:bg-disabled hover:bg-white border-2 border-transparent  focus:outline-none",
+                  !isAddToCartButtonDisabled && "hover:border-action-1 hover:text-action-1"
+                )}
+                data-testid="addToCartButton"
+              >
+                {loadingAddToCheckout
+                  ? t.formatMessage(messages.adding)
+                  : t.formatMessage(messages.addToCart)}
+              </button>
+            </a>
+          </Link>
 
           {!selectedVariant && (
             <p className="text-base text-yellow-600">

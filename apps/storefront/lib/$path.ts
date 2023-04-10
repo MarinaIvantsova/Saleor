@@ -108,6 +108,15 @@ export const pagesPath = {
           }),
         }),
       },
+      redirect: {
+        _slug: (slug: string | number) => ({
+          $url: (url?: { query?: OptionalQuery1; hash?: string }) => ({
+            pathname: "/[channel]/[locale]/products/redirect" as const,
+            query: { channel, locale, slug, ...url?.query },
+            hash: url?.hash,
+          }),
+        }),
+      },
       search: {
         $url: (url?: { hash?: string }) => ({
           pathname: "/[channel]/[locale]/search" as const,
