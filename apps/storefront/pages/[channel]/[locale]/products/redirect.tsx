@@ -23,7 +23,13 @@ function RedirectPage() {
       {data?.products?.edges.map((variant) =>
         // @ts-ignore
         variant.node.media.map((productImage) => (
-          <img src={productImage.url} width={250} height={200} alt="product image" />
+          <img
+            src={productImage.url}
+            width={250}
+            height={200}
+            key={variant.node.id}
+            alt="product image"
+          />
         ))
       )}
     </>
