@@ -82,6 +82,7 @@ export function Navbar() {
             </Link>
           </div>
           <div className="flex-1 flex justify-end">
+            <div id="my-portal"></div>
             {!authenticated ? (
               <Link href={paths.account.login.$url()} passHref legacyBehavior>
                 <a href="pass" data-testid="userIcon">
