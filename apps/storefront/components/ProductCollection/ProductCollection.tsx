@@ -1,6 +1,8 @@
 import { Text } from "@saleor/ui-kit";
 import React, { useEffect } from "react";
 import { useIntl } from "react-intl";
+import { createPortal } from "react-dom";
+import ModalContent from "../ProductCard/ModalContent";
 
 import { mapEdgesToItems } from "@/lib/maps";
 import {
@@ -85,6 +87,12 @@ export function ProductCollection({
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12"
         data-testid="productsList"
       >
+        {createPortal(
+          // @ts-ignore
+          <ModalContent />,
+          // @ts-ignore
+          document.getElementById("my-portal")
+        )}
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}

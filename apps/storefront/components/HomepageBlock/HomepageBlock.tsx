@@ -10,6 +10,8 @@ import { HomepageBlockFragment, ProductFilterInput } from "@/saleor/api";
 import { ProductCollection } from "../ProductCollection";
 import { RichText } from "../RichText";
 import { messages } from "../translations";
+import ModalContent from "../ProductCard/ModalContent";
+import { createPortal } from "react-dom";
 
 export interface HomepageBlockProps {
   menuItem: HomepageBlockFragment;
@@ -40,6 +42,7 @@ export function HomepageBlock({ menuItem }: HomepageBlockProps) {
       >
         {translate(menuItem, "name")}
       </h1>
+
       <ProductCollection filter={filter} allowMore={false} />
       <div className="flex flex-row-reverse p-4">
         <Link href={link} passHref legacyBehavior>

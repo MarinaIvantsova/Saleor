@@ -35,12 +35,15 @@ export function ProductCard({ product }: ProductCardProps) {
 
   return (
     <li key={product.id} className="w-full" onClick={() => setShowModal(!showModal)}>
-      {showModal &&
+      {/* <ModalContent onClose={() => setShowModal(!showModal)} />,  с 43 строки*/}
+
+      {/* {
         createPortal(
-          <ModalContent onClose={() => setShowModal(!showModal)} />,
+          // @ts-ignore
+          <ModalContent/>,
           // @ts-ignore
           document.getElementById("my-portal")
-        )}
+        )} */}
       {/* <Link
         href={paths.products._slug(product.slug).$url()}
         prefetch={false}
