@@ -1,28 +1,4 @@
-// import checkout from "pages/[channel]/[locale]/checkout";
 import React from "react";
-// // @ts-ignore
-// function ModalContent({ onClose }) {
-//   const style = {
-//     backgroundColor: "red",
-//     color: "black",
-//     padding: "10px",
-//     border: "1px solid black",
-//   };
-
-//   console.log("Hello");
-//   console.log(document.getElementById("my-portal"));
-//   return (
-//     <>
-//       <div style={style}>
-//         <p> Hi</p>
-//         <button onClick={onClose}>Close</button>
-//       </div>
-//     </>
-//   );
-// }
-
-// export default ModalContent;
-// import "./styles.css";
 import Folder, { FolderProps } from "./Folder";
 import folderData from "./filter.json";
 import { useState } from "react";
@@ -32,7 +8,7 @@ export default function App(): JSX.Element {
     width: "300px",
     height: "150px",
   };
-  // console.log(typeof folderData[1].value);
+
   const [data, setData] = useState<Array<FolderProps>>(folderData[1].value as Array<FolderProps>);
   const updatedData: FolderProps[] = [...data];
 

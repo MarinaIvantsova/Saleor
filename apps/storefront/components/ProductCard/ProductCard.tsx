@@ -1,13 +1,10 @@
 import { PhotographIcon } from "@heroicons/react/outline";
 import Image from "next/legacy/image";
-import Link from "next/link";
 import React, { useState } from "react";
 
 import { usePaths } from "@/lib/paths";
 import { translate } from "@/lib/translations";
 import { ProductCardFragment } from "@/saleor/api";
-import { createPortal } from "react-dom";
-import ModalContent from "./ModalContent";
 
 export interface ProductCardProps {
   product: ProductCardFragment;
@@ -35,22 +32,6 @@ export function ProductCard({ product }: ProductCardProps) {
 
   return (
     <li key={product.id} className="w-full" onClick={() => setShowModal(!showModal)}>
-      {/* <ModalContent onClose={() => setShowModal(!showModal)} />,  с 43 строки*/}
-
-      {/* {
-        createPortal(
-          // @ts-ignore
-          <ModalContent/>,
-          // @ts-ignore
-          document.getElementById("my-portal")
-        )} */}
-      {/* <Link
-        href={paths.products._slug(product.slug).$url()}
-        prefetch={false}
-        passHref
-        legacyBehavior
-      > */}
-      {/* href="pass" удален href из 46 строки*/}
       <a href="#">
         <div className="bg-main active:bg-brand w-full aspect-1">
           <div className="bg-white w-full h-full relative object-contain ">
@@ -73,7 +54,6 @@ export function ProductCard({ product }: ProductCardProps) {
           <p className="block text-md font-normal text-main underline">{secondaryDescription}</p>
         )}
       </a>
-      {/* </Link> */}
     </li>
   );
 }
