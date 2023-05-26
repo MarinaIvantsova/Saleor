@@ -23,6 +23,20 @@
   }
 }
 
+.arrow::before {
+  content: "▼";
+  display: inline-block;
+}
+
+.arrow.active::before {
+  color: red;
+  transform: rotate(180deg);
+}
+
+.child {
+  padding-left: 15px;
+}
+
 .dropdown:focus-within .dropdown-menu {
   opacity: 1;
   transform: translate(0) scale(1);
