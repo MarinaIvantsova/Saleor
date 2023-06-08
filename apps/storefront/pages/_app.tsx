@@ -13,6 +13,8 @@ import { API_URI, DEMO_MODE } from "@/lib/const";
 import { CheckoutProvider } from "@/lib/providers/CheckoutProvider";
 import { useAuthenticatedApolloClient } from "@/lib/auth/useAuthenticatedApolloClient";
 import { SaleorAuthProvider, useAuthChange, useSaleorAuthClient } from "@/lib/auth";
+import { PopupProvider } from "@/components/LoginPopup/popupContext";
+import AuthPagesRouter from "@/components/AuthPagesRouter/AuthPagesRouter";
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -31,6 +33,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   });
 
   const { saleorAuthClient } = useSaleorAuthClientProps;
+  // saleorAuthClient.onAuthRefresh = true;
 
   const { apolloClient, resetClient } = useAuthenticatedApolloClient(
     saleorAuthClient.fetchWithAuth
@@ -44,12 +47,19 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     <SaleorAuthProvider {...useSaleorAuthClientProps}>
       <ApolloProvider client={apolloClient}>
         <CheckoutProvider>
-          <RegionsProvider>
-            <BaseSeo />
-            <NextNProgress color="#5B68E4" options={{ showSpinner: false }} />
-            {DEMO_MODE && <DemoBanner />}
-            {getLayout(<Component {...pageProps} />)}
-          </RegionsProvider>
+          <PopupProvider>
+            <RegionsProvider>
+              <BaseSeo />
+              <NextNProgress color="#5B68E4" options={{ showSpinner: false }} />
+              {DEMO_MODE && <DemoBanner />}
+              {getLayout(
+                <div>
+                  <Component {...pageProps} />{" "}
+                </div>
+              )}
+              {<AuthPagesRouter props={saleorAuthClient.authRefresh} />}
+            </RegionsProvider>
+          </PopupProvider>
         </CheckoutProvider>
       </ApolloProvider>
     </SaleorAuthProvider>

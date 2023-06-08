@@ -165,6 +165,10 @@ export class SaleorAuthClient {
     return this.handleSignIn<PasswordResetResponse>(response);
   };
 
+  authRefresh = () => {
+    this.onAuthRefresh?.(true);
+  };
+
   signIn = async (variables: TokenCreateVariables) => {
     const response = await fetch(this.saleorApiUrl, getRequestData(TOKEN_CREATE, variables));
 
