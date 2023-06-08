@@ -111,7 +111,7 @@ function ProductPage({ product }: InferGetStaticPropsType<typeof getStaticProps>
     const selectedVariantID = getSelectedVariantID(product, router);
 
     return async () => {
-      setShowComponent(true);
+      // setShowComponent(true);
 
       // Clear previous error messages
       setAddToCartError("");
@@ -238,8 +238,6 @@ function ProductPage({ product }: InferGetStaticPropsType<typeof getStaticProps>
               ? t.formatMessage(messages.adding)
               : t.formatMessage(messages.addToCart)}
           </button>
-
-          {/* {showPopup && <LoginPopup />} */}
 
           {!selectedVariant && (
             <p className="text-base text-yellow-600">

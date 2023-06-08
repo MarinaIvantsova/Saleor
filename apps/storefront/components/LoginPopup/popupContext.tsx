@@ -1,7 +1,7 @@
 import React, { createContext, useState, ReactNode } from "react";
 
 export type AUTH_STATES = "login" | "register" | undefined;
-export type typeCheckoutFunction = () => {};
+export type typeCheckoutFunction = () => () => {};
 
 export enum AUTH_NAME_STATES {
   Login = "login",

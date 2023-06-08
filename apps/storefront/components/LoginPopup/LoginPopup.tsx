@@ -38,17 +38,17 @@ function LoginPopup(props: any) {
   const redirectURL = !routerQueryNext || isExternalUrl ? paths.$url() : routerQueryNext;
 
   const handleLogin = handleSubmitForm(async (formData: LoginFormData) => {
-    const { data } = await signIn({
-      email: formData.email,
-      password: formData.password,
-    });
+    // const { data } = await signIn({
+    //   email: formData.email,
+    //   password: formData.password,
+    // });
 
-    if (data?.tokenCreate?.errors?.length) {
-      setErrorForm("email", { message: "Invalid credentials" });
-      return;
-    }
-    console.log(checkoutState[0]());
-    checkoutState.forEach((el) => el()());
+    // if (data?.tokenCreate?.errors?.length) {
+    //   setErrorForm("email", { message: "Invalid credentials" });
+    //   return;
+    // }
+    console.log(checkoutState[0]()());
+    checkoutState.forEach((el) => el());
     setCheckoutState([]);
     togglePopup(undefined);
 
