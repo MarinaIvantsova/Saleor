@@ -1,7 +1,7 @@
 import React, { createContext, useState, ReactNode } from "react";
 
 export type AUTH_STATES = "login" | "register" | undefined;
-export type typeCheckoutFunction = () => () => {};
+export type typeCheckoutFunction = () => void;
 
 export enum AUTH_NAME_STATES {
   Login = "login",
@@ -11,15 +11,15 @@ export enum AUTH_NAME_STATES {
 type PopupContextType = {
   authState: AUTH_STATES;
   togglePopup: (prev: AUTH_STATES) => void;
-  checkoutState: typeCheckoutFunction[];
+  checkoutState: typeCheckoutFunction;
   setFuncWithId: (func: typeCheckoutFunction) => void;
-  setCheckoutState: (prev: typeCheckoutFunction[]) => void;
+  setCheckoutState: (prev: typeCheckoutFunction) => void;
 };
 
 const default_value = {
   authState: undefined,
   togglePopup: (prev: AUTH_STATES) => {},
-  checkoutState: [],
+  checkoutState: () => {},
   setFuncWithId: (func: typeCheckoutFunction) => {},
   setCheckoutState: () => {},
 };
@@ -32,14 +32,13 @@ type PopupProviderProps = {
 
 export const PopupProvider = ({ children }: PopupProviderProps) => {
   const [authState, setAuthState] = useState<AUTH_STATES>(undefined);
-  const [checkoutState, setCheckoutState] = useState<typeCheckoutFunction[]>([]);
+  const [checkoutState, setCheckoutState] = useState<typeCheckoutFunction>(() => {});
 
   const togglePopup = (prev: AUTH_STATES) => {
     setAuthState(prev);
   };
   const setFuncWithId = (func: typeCheckoutFunction) => {
-    checkoutState.push(func);
-    setCheckoutState(checkoutState);
+    setCheckoutState(func);
   };
 
   const contextValue: PopupContextType = {

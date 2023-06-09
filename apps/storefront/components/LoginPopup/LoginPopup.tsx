@@ -42,20 +42,12 @@ function LoginPopup(props: any) {
     //   email: formData.email,
     //   password: formData.password,
     // });
-
-    // if (data?.tokenCreate?.errors?.length) {
-    //   setErrorForm("email", { message: "Invalid credentials" });
-    //   return;
-    // }
-    console.log(checkoutState[0]()());
-    checkoutState.forEach((el) => el());
-    setCheckoutState([]);
+    checkoutState();
     togglePopup(undefined);
-
     // void router.push(redirectURL);
   });
 
-  const { togglePopup, checkoutState, setCheckoutState } = useContext(PopupContext);
+  const { togglePopup, checkoutState, setCheckoutState, setFuncWithId } = useContext(PopupContext);
 
   return (
     <div>
