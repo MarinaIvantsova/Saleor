@@ -17,6 +17,7 @@ export interface SaleorAuthClientProps {
   onAuthRefresh?: (isAuthenticating: boolean) => void;
   saleorApiUrl: string;
   storage: Storage | undefined;
+  authRefresh?: (isAuthenticating: boolean) => void;
 }
 
 export class SaleorAuthClient {
@@ -163,10 +164,6 @@ export class SaleorAuthClient {
     const response = await fetch(this.saleorApiUrl, getRequestData(PASSWORD_RESET, variables));
 
     return this.handleSignIn<PasswordResetResponse>(response);
-  };
-
-  authRefresh = () => {
-    this.onAuthRefresh?.(true);
   };
 
   signIn = async (variables: TokenCreateVariables) => {

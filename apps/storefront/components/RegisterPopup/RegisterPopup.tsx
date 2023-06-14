@@ -6,7 +6,7 @@ import usePaths from "@/lib/paths";
 import { messages } from "@/components/translations";
 import { useIntl } from "react-intl";
 import { AUTH_NAME_STATES, AUTH_STATES, PopupContext } from "../LoginPopup/popupContext";
-import { Context, useContext } from "react";
+import { useContext } from "react";
 
 export interface RegisterFormData {
   email: string;
@@ -119,8 +119,3 @@ function RegisterPopup() {
 }
 
 export default RegisterPopup;
-function usContext(
-  PopupContext: Context<{ authState: AUTH_STATES; togglePopup: (prev: AUTH_STATES) => void }>
-): { authState: any; togglePopup: any } {
-  throw new Error("Function not implemented.");
-}

@@ -2,9 +2,6 @@ import { useIntl } from "react-intl";
 import { messages } from "@/components/translations";
 import { useForm } from "react-hook-form";
 import { DEMO_MODE } from "@/lib/const";
-import { useSaleorAuthContext } from "@/lib/auth";
-import { useRouter } from "next/router";
-import usePaths from "@/lib/paths";
 import { useContext } from "react";
 import { AUTH_NAME_STATES, PopupContext } from "./popupContext";
 
@@ -13,11 +10,8 @@ export interface LoginFormData {
   password: string;
 }
 
-function LoginPopup(props: any) {
+function LoginPopup({ setIsAuthenticating }: any) {
   const t = useIntl();
-  const { signIn } = useSaleorAuthContext();
-  const router = useRouter();
-  const paths = usePaths();
 
   const defaultValues = DEMO_MODE
     ? {
@@ -33,21 +27,11 @@ function LoginPopup(props: any) {
     setError: setErrorForm,
   } = useForm<LoginFormData>({ defaultValues });
 
-  const routerQueryNext = router.query.next?.toString() || "";
-  const isExternalUrl = /^\w+:\/\//.test(routerQueryNext);
-  const redirectURL = !routerQueryNext || isExternalUrl ? paths.$url() : routerQueryNext;
-
   const handleLogin = handleSubmitForm(async (formData: LoginFormData) => {
-    // const { data } = await signIn({
-    //   email: formData.email,
-    //   password: formData.password,
-    // });
-    checkoutState();
     togglePopup(undefined);
-    // void router.push(redirectURL);
   });
 
-  const { togglePopup, checkoutState, setCheckoutState, setFuncWithId } = useContext(PopupContext);
+  const { togglePopup } = useContext(PopupContext);
 
   return (
     <div>
@@ -94,7 +78,7 @@ function LoginPopup(props: any) {
         </div>
         <div className="">
           <button
-            onClick={() => props.props.authRefresh}
+            onClick={() => setIsAuthenticating(true)}
             type="submit"
             className="mt-4 mb-3 w-full bg-green-500 hover:bg-green-400 text-white py-2 rounded-md transition duration-100"
           >
@@ -115,14 +99,3 @@ function LoginPopup(props: any) {
 }
 
 export default LoginPopup;
-
-function addToCartAfterLogin() {
-  throw new Error("Function not implemented.");
-}
-// function addToCart() {
-//   throw new Error("Function not implemented.");
-// }
-
-// function addToCartAfterLogin() {
-//   throw new Error("Function not implemented.");
-// }

@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 export interface UseSaleorAuthClient {
   saleorAuthClient: SaleorAuthClient;
   isAuthenticating: boolean;
+  setIsAuthenticating: (param: boolean) => void;
 }
 
 /**
@@ -38,5 +39,5 @@ export const useSaleorAuthClient = ({
     []
   );
 
-  return { saleorAuthClient, isAuthenticating };
+  return { saleorAuthClient, isAuthenticating, setIsAuthenticating };
 };

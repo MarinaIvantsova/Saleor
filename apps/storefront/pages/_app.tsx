@@ -32,8 +32,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     storage: typeof window !== "undefined" ? window.localStorage : undefined,
   });
 
-  const { saleorAuthClient } = useSaleorAuthClientProps;
-  // saleorAuthClient.onAuthRefresh = true;
+  const { saleorAuthClient, setIsAuthenticating } = useSaleorAuthClientProps;
 
   const { apolloClient, resetClient } = useAuthenticatedApolloClient(
     saleorAuthClient.fetchWithAuth
@@ -57,7 +56,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
                   <Component {...pageProps} />{" "}
                 </div>
               )}
-              {<AuthPagesRouter props={saleorAuthClient.authRefresh} />}
+              {<AuthPagesRouter setIsAuthenticating={setIsAuthenticating} />}
             </RegionsProvider>
           </PopupProvider>
         </CheckoutProvider>

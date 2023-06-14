@@ -1,22 +1,32 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AUTH_NAME_STATES, PopupContext } from "../LoginPopup/popupContext";
 import LoginPopup from "../LoginPopup/LoginPopup";
 import RegisterPopup from "../RegisterPopup/RegisterPopup";
 
-function AuthPagesRouter(props: any) {
+function AuthPagesRouter({ setIsAuthenticating }: any) {
   const { authState, togglePopup } = useContext(PopupContext);
 
   const renderAuthPageContent = () => {
     if (authState === AUTH_NAME_STATES.Login) {
-      return <LoginPopup props={props} />;
+      return <LoginPopup setIsAuthenticating={setIsAuthenticating} />;
     } else if (authState === AUTH_NAME_STATES.Register) {
       return <RegisterPopup />;
     }
   };
 
+  useEffect(() => {
+    if (authState) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "scroll";
+    }
+  }, [authState]);
+
   if (authState === undefined) return null;
 
-  const handleClick = () => togglePopup(undefined);
+  const handleClick = () => {
+    togglePopup(undefined);
+  };
 
   return (
     <div className="popup-overlay">

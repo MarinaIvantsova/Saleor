@@ -4,7 +4,7 @@ import { GetStaticPaths, GetStaticPropsContext, InferGetStaticPropsType } from "
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Custom404 from "pages/404";
-import React, { ReactElement, useContext, useState } from "react";
+import React, { ReactElement, useContext, useEffect, useState } from "react";
 import { useIntl } from "react-intl";
 
 import { Layout, RichText, VariantSelector } from "@/components";
@@ -28,11 +28,9 @@ import {
 } from "@/saleor/api";
 import { serverApolloClient } from "@/lib/auth/useAuthenticatedApolloClient";
 import { useUser } from "@/lib/useUser";
-// import LoginPopup from "@/components/LoginPopup/LoginPopup";
 import { AUTH_NAME_STATES, PopupContext } from "@/components/LoginPopup/popupContext";
 import { useSaleorAuthContext } from "@/lib/auth";
-// import RegisterPopup from "@/components/RegisterPopup/RegisterPopup";
-// import AUTH_STATES from
+import { usePrevious } from "react-use";
 
 export type OptionalQuery = {
   variant?: string;
@@ -95,15 +93,24 @@ function ProductPage({ product }: InferGetStaticPropsType<typeof getStaticProps>
   const selectedVariant = product?.variants?.find((v) => v?.id === selectedVariantID) || undefined;
   const { isAuthenticating } = useSaleorAuthContext();
 
-  const { togglePopup, setFuncWithId } = useContext(PopupContext);
+  const { togglePopup } = useContext(PopupContext);
+  const [wasProductAdded, setProductAdded] = useState(false);
+
+  const prevAuthValue = usePrevious(isAuthenticating);
+
+  useEffect(() => {
+    if ((prevAuthValue === false && isAuthenticating === true) || wasProductAdded) {
+      addToCartAfterLogin()();
+    }
+  }, [isAuthenticating]);
 
   const onAddToCart = async () => {
-    // setIsAuthenticating(true);
+    setProductAdded(!wasProductAdded);
 
-    setFuncWithId(addToCartAfterLogin);
     if (!isAuthenticating) {
       togglePopup(AUTH_NAME_STATES.Login);
-      return;
+    } else {
+      addToCartAfterLogin()();
     }
   };
 
@@ -111,8 +118,6 @@ function ProductPage({ product }: InferGetStaticPropsType<typeof getStaticProps>
     const selectedVariantID = getSelectedVariantID(product, router);
 
     return async () => {
-      // setShowComponent(true);
-
       // Clear previous error messages
       setAddToCartError("");
 
@@ -258,7 +263,6 @@ function ProductPage({ product }: InferGetStaticPropsType<typeof getStaticProps>
               <RichText jsonStringData={description} />
             </div>
           )}
-
           <AttributeDetails product={product} selectedVariant={selectedVariant} />
         </div>
       </main>
@@ -271,6 +275,3 @@ export default ProductPage;
 ProductPage.getLayout = function getLayout(page: ReactElement) {
   return <Layout>{page}</Layout>;
 };
-function setShowComponent(arg0: boolean) {
-  throw new Error("Function not implemented.");
-}
