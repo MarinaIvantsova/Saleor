@@ -99,13 +99,13 @@ function ProductPage({ product }: InferGetStaticPropsType<typeof getStaticProps>
   const prevAuthValue = usePrevious(isAuthenticating);
 
   useEffect(() => {
-    if ((prevAuthValue === false && isAuthenticating === true) || wasProductAdded) {
+    if (prevAuthValue === false && isAuthenticating === true && wasProductAdded) {
       addToCartAfterLogin()();
     }
   }, [isAuthenticating]);
 
   const onAddToCart = async () => {
-    setProductAdded(!wasProductAdded);
+    setProductAdded(true);
 
     if (!isAuthenticating) {
       togglePopup(AUTH_NAME_STATES.Login);
