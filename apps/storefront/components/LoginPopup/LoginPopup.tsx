@@ -12,6 +12,7 @@ export interface LoginFormData {
 
 function LoginPopup({ setIsAuthenticating }: { setIsAuthenticating: (param: boolean) => void }) {
   const t = useIntl();
+  const { togglePopup } = useContext(PopupContext);
 
   const defaultValues = DEMO_MODE
     ? {
@@ -30,8 +31,6 @@ function LoginPopup({ setIsAuthenticating }: { setIsAuthenticating: (param: bool
   const handleLogin = handleSubmitForm(async (formData: LoginFormData) => {
     togglePopup(undefined);
   });
-
-  const { togglePopup } = useContext(PopupContext);
 
   return (
     <div>

@@ -10,6 +10,10 @@ function AuthPagesRouter({
 }) {
   const { authState, togglePopup } = useContext(PopupContext);
 
+  const handleClick = () => {
+    togglePopup(undefined);
+  };
+
   const renderAuthPageContent = () => {
     if (authState === AUTH_NAME_STATES.Login) {
       return <LoginPopup setIsAuthenticating={setIsAuthenticating} />;
@@ -18,19 +22,7 @@ function AuthPagesRouter({
     }
   };
 
-  useEffect(() => {
-    if (authState) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "scroll";
-    }
-  }, [authState]);
-
   if (authState === undefined) return null;
-
-  const handleClick = () => {
-    togglePopup(undefined);
-  };
 
   return (
     <div className="popup-overlay">

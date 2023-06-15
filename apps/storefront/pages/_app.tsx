@@ -4,7 +4,7 @@ import { ApolloProvider } from "@apollo/client";
 import { NextPage } from "next";
 import { AppProps } from "next/app";
 import NextNProgress from "nextjs-progressbar";
-import React, { ReactElement, ReactNode } from "react";
+import React, { ReactElement, ReactNode, useContext } from "react";
 
 import { DemoBanner } from "@/components/DemoBanner";
 import { RegionsProvider } from "@/components/RegionsProvider";
@@ -13,8 +13,9 @@ import { API_URI, DEMO_MODE } from "@/lib/const";
 import { CheckoutProvider } from "@/lib/providers/CheckoutProvider";
 import { useAuthenticatedApolloClient } from "@/lib/auth/useAuthenticatedApolloClient";
 import { SaleorAuthProvider, useAuthChange, useSaleorAuthClient } from "@/lib/auth";
-import { PopupProvider } from "@/components/LoginPopup/popupContext";
+import { PopupContext, PopupProvider } from "@/components/LoginPopup/popupContext";
 import AuthPagesRouter from "@/components/AuthPagesRouter/AuthPagesRouter";
+import clsx from "clsx";
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -33,6 +34,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   });
 
   const { saleorAuthClient, setIsAuthenticating } = useSaleorAuthClientProps;
+  const { authState } = useContext(PopupContext);
 
   const { apolloClient, resetClient } = useAuthenticatedApolloClient(
     saleorAuthClient.fetchWithAuth
@@ -51,12 +53,10 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
               <BaseSeo />
               <NextNProgress color="#5B68E4" options={{ showSpinner: false }} />
               {DEMO_MODE && <DemoBanner />}
-              {getLayout(
-                <div>
-                  <Component {...pageProps} />{" "}
-                </div>
-              )}
-              {<AuthPagesRouter setIsAuthenticating={setIsAuthenticating} />}
+              <div className={clsx(authState && "overflow-hidden")}>
+                {getLayout(<Component {...pageProps} />)}
+                {<AuthPagesRouter setIsAuthenticating={setIsAuthenticating} />}
+              </div>
             </RegionsProvider>
           </PopupProvider>
         </CheckoutProvider>

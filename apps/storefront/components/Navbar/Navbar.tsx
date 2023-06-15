@@ -75,7 +75,6 @@ export function Navbar() {
   const handleClick = () => {
     if (!isAuthenticating) {
       togglePopup(AUTH_NAME_STATES.Login);
-      return;
     }
   };
 
