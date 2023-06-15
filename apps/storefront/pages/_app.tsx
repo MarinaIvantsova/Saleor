@@ -15,7 +15,7 @@ import { useAuthenticatedApolloClient } from "@/lib/auth/useAuthenticatedApolloC
 import { SaleorAuthProvider, useAuthChange, useSaleorAuthClient } from "@/lib/auth";
 import { PopupContext, PopupProvider } from "@/components/LoginPopup/popupContext";
 import AuthPagesRouter from "@/components/AuthPagesRouter/AuthPagesRouter";
-import clsx from "clsx";
+import ContainerComponent from "@/components/ContainerComponent/ContainerComponent";
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -34,7 +34,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   });
 
   const { saleorAuthClient, setIsAuthenticating } = useSaleorAuthClientProps;
-  const { authState } = useContext(PopupContext);
+  // const { authState } = useContext(PopupContext);
 
   const { apolloClient, resetClient } = useAuthenticatedApolloClient(
     saleorAuthClient.fetchWithAuth
@@ -53,10 +53,10 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
               <BaseSeo />
               <NextNProgress color="#5B68E4" options={{ showSpinner: false }} />
               {DEMO_MODE && <DemoBanner />}
-              <div className={clsx(authState && "overflow-hidden")}>
+              <ContainerComponent>
                 {getLayout(<Component {...pageProps} />)}
                 {<AuthPagesRouter setIsAuthenticating={setIsAuthenticating} />}
-              </div>
+              </ContainerComponent>
             </RegionsProvider>
           </PopupProvider>
         </CheckoutProvider>
