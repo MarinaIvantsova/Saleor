@@ -3,7 +3,11 @@ import { AUTH_NAME_STATES, PopupContext } from "../LoginPopup/popupContext";
 import LoginPopup from "../LoginPopup/LoginPopup";
 import RegisterPopup from "../RegisterPopup/RegisterPopup";
 
-function AuthPagesRouter({ setIsAuthenticating }: any) {
+function AuthPagesRouter({
+  setIsAuthenticating,
+}: {
+  setIsAuthenticating: (param: boolean) => void;
+}) {
   const { authState, togglePopup } = useContext(PopupContext);
 
   const renderAuthPageContent = () => {

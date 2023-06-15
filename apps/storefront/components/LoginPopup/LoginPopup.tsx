@@ -10,7 +10,7 @@ export interface LoginFormData {
   password: string;
 }
 
-function LoginPopup({ setIsAuthenticating }: any) {
+function LoginPopup({ setIsAuthenticating }: { setIsAuthenticating: (param: boolean) => void }) {
   const t = useIntl();
 
   const defaultValues = DEMO_MODE
