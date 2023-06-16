@@ -7,9 +7,8 @@ type PopupProviderProps = {
 
 function ContainerComponent({ children }: PopupProviderProps) {
   const { authState } = useContext(PopupContext);
-  console.log(authState);
 
-  return <div className={clsx(authState && "overflow-hidden")}>{children}</div>;
+  return <div className={clsx(authState && "overflow-hidden h-screen")}>{children}</div>;
 }
 
 export default ContainerComponent;
