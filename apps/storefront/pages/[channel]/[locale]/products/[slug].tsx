@@ -84,16 +84,8 @@ function ProductPage({ product }: InferGetStaticPropsType<typeof getStaticProps>
   const [loadingAddToCheckout, setLoadingAddToCheckout] = useState(false);
   const [addToCartError, setAddToCartError] = useState("");
 
-  if (!product?.id) {
-    return <Custom404 />;
-  }
-
-  const selectedVariantID = getSelectedVariantID(product, router);
-
-  const selectedVariant = product?.variants?.find((v) => v?.id === selectedVariantID) || undefined;
-  const { isAuthenticating } = useSaleorAuthContext();
-
   const { togglePopup } = useContext(PopupContext);
+  const { isAuthenticating } = useSaleorAuthContext();
   const [wasProductAdded, setProductAdded] = useState(false);
 
   useEffect(() => {
@@ -101,6 +93,14 @@ function ProductPage({ product }: InferGetStaticPropsType<typeof getStaticProps>
       addToCartAfterLogin()();
     }
   }, [isAuthenticating]);
+
+  if (!product?.id) {
+    return <Custom404 />;
+  }
+
+  const selectedVariantID = getSelectedVariantID(product, router);
+
+  const selectedVariant = product?.variants?.find((v) => v?.id === selectedVariantID) || undefined;
 
   const onAddToCart = () => {
     setProductAdded(true);
