@@ -97,7 +97,7 @@ function ProductPage({ product }: InferGetStaticPropsType<typeof getStaticProps>
   const [wasProductAdded, setProductAdded] = useState(false);
 
   useEffect(() => {
-    if (isAuthenticating === true && wasProductAdded) {
+    if (isAuthenticating && wasProductAdded) {
       addToCartAfterLogin()();
     }
   }, [isAuthenticating]);
