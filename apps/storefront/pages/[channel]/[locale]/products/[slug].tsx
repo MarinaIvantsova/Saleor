@@ -84,12 +84,12 @@ function ProductPage({ product }: InferGetStaticPropsType<typeof getStaticProps>
   const [loadingAddToCheckout, setLoadingAddToCheckout] = useState(false);
   const [addToCartError, setAddToCartError] = useState("");
 
-  const { togglePopup } = useContext(PopupContext);
+  const { togglePopup, wasUserIconClicked } = useContext(PopupContext);
   const { isAuthenticating } = useSaleorAuthContext();
   const [wasProductAdded, setProductAdded] = useState(false);
 
   useEffect(() => {
-    if (isAuthenticating && wasProductAdded) {
+    if (isAuthenticating && wasProductAdded && !wasUserIconClicked) {
       addToCartAfterLogin()();
     }
   }, [isAuthenticating]);
