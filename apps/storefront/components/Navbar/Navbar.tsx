@@ -95,7 +95,7 @@ export function Navbar() {
           </div>
           <div className="flex-1 flex justify-end">
             {!authenticated ? (
-              <button>
+              <button type="button">
                 <span onClick={handleClick} data-testid="userIcon">
                   <NavIconButton isButton={false} icon="user" aria-hidden="true" />
                 </span>

@@ -25,10 +25,9 @@ function LoginPopup({ setIsAuthenticating }: { setIsAuthenticating: (param: bool
     register: registerForm,
     handleSubmit: handleSubmitForm,
     formState: { errors: errorsForm },
-    setError: setErrorForm,
   } = useForm<LoginFormData>({ defaultValues });
 
-  const handleLogin = handleSubmitForm(async (formData: LoginFormData) => {
+  const handleLogin = handleSubmitForm(async () => {
     togglePopup(undefined);
   });
 

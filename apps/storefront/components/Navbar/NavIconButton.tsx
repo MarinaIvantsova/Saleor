@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, useContext } from "react";
+import { ButtonHTMLAttributes } from "react";
 
 import Bag from "./bagIcon.svg"; // in the final version it should be imported from ui-kit package
 import Close from "./closeIocn.svg"; // in the final version it should be imported from ui-kit package
@@ -6,7 +6,6 @@ import MenuIcon from "./menuIcon.svg"; // in the final version it should be impo
 import styles from "./Navbar.module.css"; // in the final version it should be imported from ui-kit package
 import Spyglass from "./spyglassIcon.svg"; // in the final version it should be imported from ui-kit package
 import User from "./userIcon.svg"; // in the final version it should be imported from ui-kit package
-import { AUTH_NAME_STATES, PopupContext } from "../LoginPopup/popupContext";
 
 interface NavIconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   icon: "user" | "bag" | "spyglass" | "menu" | "close";

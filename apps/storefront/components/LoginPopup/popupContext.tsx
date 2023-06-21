@@ -16,7 +16,7 @@ type PopupContextType = {
 
 const default_value = {
   authState: undefined,
-  togglePopup: (param: AUTH_STATES) => {},
+  togglePopup: () => {},
   wasUserIconClicked: false,
   toggleIconUser: () => {},
 };

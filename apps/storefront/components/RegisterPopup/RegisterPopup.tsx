@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import usePaths from "@/lib/paths";
 import { messages } from "@/components/translations";
 import { useIntl } from "react-intl";
-import { AUTH_NAME_STATES, AUTH_STATES, PopupContext } from "../LoginPopup/popupContext";
+import { AUTH_NAME_STATES, PopupContext } from "../LoginPopup/popupContext";
 import { useContext } from "react";
 
 export interface RegisterFormData {

@@ -4,7 +4,7 @@ import { ApolloProvider } from "@apollo/client";
 import { NextPage } from "next";
 import { AppProps } from "next/app";
 import NextNProgress from "nextjs-progressbar";
-import React, { ReactElement, ReactNode, useContext } from "react";
+import React, { ReactElement, ReactNode } from "react";
 
 import { DemoBanner } from "@/components/DemoBanner";
 import { RegionsProvider } from "@/components/RegionsProvider";
@@ -13,7 +13,7 @@ import { API_URI, DEMO_MODE } from "@/lib/const";
 import { CheckoutProvider } from "@/lib/providers/CheckoutProvider";
 import { useAuthenticatedApolloClient } from "@/lib/auth/useAuthenticatedApolloClient";
 import { SaleorAuthProvider, useAuthChange, useSaleorAuthClient } from "@/lib/auth";
-import { PopupContext, PopupProvider } from "@/components/LoginPopup/popupContext";
+import { PopupProvider } from "@/components/LoginPopup/popupContext";
 import AuthPagesRouter from "@/components/AuthPagesRouter/AuthPagesRouter";
 import ContainerComponent from "@/components/ContainerComponent/ContainerComponent";
 

@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { AUTH_NAME_STATES, PopupContext } from "../LoginPopup/popupContext";
 import LoginPopup from "../LoginPopup/LoginPopup";
 import RegisterPopup from "../RegisterPopup/RegisterPopup";
@@ -34,7 +34,7 @@ function AuthPagesRouter({
             </div>
           </div>
         </div>
-        <button onClick={handleClick} className="close-button">
+        <button type="button" onClick={handleClick} className="close-button">
           Закрыть
         </button>
       </div>

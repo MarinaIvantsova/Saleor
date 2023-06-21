@@ -30,7 +30,6 @@ import { serverApolloClient } from "@/lib/auth/useAuthenticatedApolloClient";
 import { useUser } from "@/lib/useUser";
 import { AUTH_NAME_STATES, PopupContext } from "@/components/LoginPopup/popupContext";
 import { useSaleorAuthContext } from "@/lib/auth";
-import { usePrevious } from "react-use";
 
 export type OptionalQuery = {
   variant?: string;
@@ -90,7 +89,7 @@ function ProductPage({ product }: InferGetStaticPropsType<typeof getStaticProps>
 
   useEffect(() => {
     if (isAuthenticating && wasProductAdded && !wasUserIconClicked) {
-      addToCartAfterLogin()();
+      void addToCartAfterLogin()();
     }
   }, [isAuthenticating]);
 
@@ -108,7 +107,7 @@ function ProductPage({ product }: InferGetStaticPropsType<typeof getStaticProps>
     if (!isAuthenticating) {
       togglePopup(AUTH_NAME_STATES.Login);
     } else {
-      addToCartAfterLogin()();
+      void addToCartAfterLogin()();
     }
   };
 
