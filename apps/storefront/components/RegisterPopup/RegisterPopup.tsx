@@ -19,7 +19,7 @@ function RegisterPopup() {
   const { currentChannel } = useRegions();
   const t = useIntl();
 
-  const { togglePopup } = useContext(PopupContext);
+  const { setAuthState } = useContext(PopupContext);
 
   const {
     register: registerForm,
@@ -110,7 +110,7 @@ function RegisterPopup() {
         </div>
       </form>
       <p className="mt-8">
-        <span onClick={() => togglePopup(AUTH_NAME_STATES.Login)}>
+        <span onClick={() => setAuthState(AUTH_NAME_STATES.Login)}>
           {t.formatMessage(messages.backToLogin)}
         </span>
       </p>

@@ -83,13 +83,13 @@ function ProductPage({ product }: InferGetStaticPropsType<typeof getStaticProps>
   const [loadingAddToCheckout, setLoadingAddToCheckout] = useState(false);
   const [addToCartError, setAddToCartError] = useState("");
 
-  const { togglePopup, wasUserIconClicked } = useContext(PopupContext);
+  const { setAuthState, wasUserIconClicked } = useContext(PopupContext);
   const { isAuthenticating } = useSaleorAuthContext();
   const [wasProductAdded, setProductAdded] = useState(false);
 
   useEffect(() => {
     if (isAuthenticating && wasProductAdded && !wasUserIconClicked) {
-      void addToCartAfterLogin()();
+      void addToCartAfterLogin();
     }
   }, [isAuthenticating]);
 
@@ -105,76 +105,72 @@ function ProductPage({ product }: InferGetStaticPropsType<typeof getStaticProps>
     setProductAdded(true);
 
     if (!isAuthenticating) {
-      togglePopup(AUTH_NAME_STATES.Login);
+      setAuthState(AUTH_NAME_STATES.Login);
     } else {
-      void addToCartAfterLogin()();
+      void addToCartAfterLogin();
     }
   };
 
-  const addToCartAfterLogin = () => {
-    const selectedVariantID = getSelectedVariantID(product, router);
+  const addToCartAfterLogin = async () => {
+    // Clear previous error messages
+    setAddToCartError("");
 
-    return async () => {
-      // Clear previous error messages
-      setAddToCartError("");
+    // Block add to checkout button
+    setLoadingAddToCheckout(true);
+    const errors: CheckoutError[] = [];
 
-      // Block add to checkout button
-      setLoadingAddToCheckout(true);
-      const errors: CheckoutError[] = [];
+    if (!selectedVariantID) {
+      return;
+    }
 
-      if (!selectedVariantID) {
-        return;
-      }
-
-      if (checkout) {
-        // If checkout is already existing, add products
-        const { data: addToCartData } = await addProductToCheckout({
-          variables: {
-            checkoutToken,
-            variantId: selectedVariantID,
-            locale: query.locale,
-          },
-        });
-        addToCartData?.checkoutLinesAdd?.errors.forEach((e) => {
-          if (e) {
-            errors.push(e);
-          }
-        });
-      } else {
-        // Theres no checkout, we have to create one
-        const { data: createCheckoutData } = await createCheckout({
-          variables: {
-            email: user?.email,
-            channel: currentChannel.slug,
-            lines: [
-              {
-                quantity: 1,
-                variantId: selectedVariantID,
-              },
-            ],
-          },
-        });
-        createCheckoutData?.checkoutCreate?.errors.forEach((e) => {
-          if (e) {
-            errors.push(e);
-          }
-        });
-        if (createCheckoutData?.checkoutCreate?.checkout?.token) {
-          setCheckoutToken(createCheckoutData?.checkoutCreate?.checkout?.token);
+    if (checkout) {
+      // If checkout is already existing, add products
+      const { data: addToCartData } = await addProductToCheckout({
+        variables: {
+          checkoutToken,
+          variantId: selectedVariantID,
+          locale: query.locale,
+        },
+      });
+      addToCartData?.checkoutLinesAdd?.errors.forEach((e) => {
+        if (e) {
+          errors.push(e);
         }
+      });
+    } else {
+      // Theres no checkout, we have to create one
+      const { data: createCheckoutData } = await createCheckout({
+        variables: {
+          email: user?.email,
+          channel: currentChannel.slug,
+          lines: [
+            {
+              quantity: 1,
+              variantId: selectedVariantID,
+            },
+          ],
+        },
+      });
+      createCheckoutData?.checkoutCreate?.errors.forEach((e) => {
+        if (e) {
+          errors.push(e);
+        }
+      });
+      if (createCheckoutData?.checkoutCreate?.checkout?.token) {
+        setCheckoutToken(createCheckoutData?.checkoutCreate?.checkout?.token);
       }
-      // Enable button
-      setLoadingAddToCheckout(false);
+    }
+    // Enable button
+    setLoadingAddToCheckout(false);
 
-      if (errors.length === 0) {
-        // Product successfully added
-        return;
-      }
+    if (errors.length === 0) {
+      // Product successfully added
+      return;
+    }
 
-      // Display error message
-      const errorMessages = errors.map((e) => e.message || "") || [];
-      setAddToCartError(errorMessages.join("\n"));
-    };
+    // Display error message
+    const errorMessages = errors.map((e) => e.message || "") || [];
+    setAddToCartError(errorMessages.join("\n"));
   };
 
   const isAddToCartButtonDisabled =

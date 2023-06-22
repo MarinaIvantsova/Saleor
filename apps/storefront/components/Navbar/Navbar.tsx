@@ -69,13 +69,13 @@ export function Navbar() {
       0
     ) || 0;
 
-  const { togglePopup, toggleIconUser } = useContext(PopupContext);
+  const { setAuthState, toggleIconUser } = useContext(PopupContext);
   const { isAuthenticating } = useSaleorAuthContext();
 
   const handleClick = () => {
     if (!isAuthenticating) {
       toggleIconUser();
-      togglePopup(AUTH_NAME_STATES.Login);
+      setAuthState(AUTH_NAME_STATES.Login);
     }
   };
 

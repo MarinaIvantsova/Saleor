@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 export interface UseSaleorAuthClient {
   saleorAuthClient: SaleorAuthClient;
   isAuthenticating: boolean;
-  setIsAuthenticating: (param: boolean) => void;
+  setIsAuthenticating: (newAuthenticatingState: boolean) => void;
 }
 
 /**

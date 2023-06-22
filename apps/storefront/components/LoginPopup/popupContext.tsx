@@ -9,14 +9,14 @@ export enum AUTH_NAME_STATES {
 
 type PopupContextType = {
   authState: AUTH_STATES;
-  togglePopup: (param: AUTH_STATES) => void;
+  setAuthState: (newAuthPageState: AUTH_STATES) => void;
   wasUserIconClicked: boolean;
   toggleIconUser: () => void;
 };
 
 const default_value = {
   authState: undefined,
-  togglePopup: () => {},
+  setAuthState: () => {},
   wasUserIconClicked: false,
   toggleIconUser: () => {},
 };
@@ -28,12 +28,10 @@ type PopupProviderProps = {
 };
 
 export const PopupProvider = ({ children }: PopupProviderProps) => {
-  const [authState, setAuthState] = useState<AUTH_STATES>(undefined);
-  const [wasUserIconClicked, setWasUserIconClicked] = useState<boolean>(false);
-
-  const togglePopup = (param: AUTH_STATES) => {
-    setAuthState(param);
-  };
+  const [authState, setAuthState] = useState<AUTH_STATES>(default_value.authState);
+  const [wasUserIconClicked, setWasUserIconClicked] = useState<boolean>(
+    default_value.wasUserIconClicked
+  );
 
   const toggleIconUser = () => {
     setWasUserIconClicked(!wasUserIconClicked);
@@ -41,7 +39,7 @@ export const PopupProvider = ({ children }: PopupProviderProps) => {
 
   const contextValue: PopupContextType = {
     authState,
-    togglePopup,
+    setAuthState,
     wasUserIconClicked,
     toggleIconUser,
   };

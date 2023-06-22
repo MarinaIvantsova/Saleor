@@ -6,12 +6,12 @@ import RegisterPopup from "../RegisterPopup/RegisterPopup";
 function AuthPagesRouter({
   setIsAuthenticating,
 }: {
-  setIsAuthenticating: (param: boolean) => void;
+  setIsAuthenticating: (newAuthenticatingState: boolean) => void;
 }) {
-  const { authState, togglePopup } = useContext(PopupContext);
+  const { authState, setAuthState } = useContext(PopupContext);
 
   const handleClick = () => {
-    togglePopup(undefined);
+    setAuthState(undefined);
   };
 
   const renderAuthPageContent = () => {

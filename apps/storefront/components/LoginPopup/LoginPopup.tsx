@@ -10,9 +10,13 @@ export interface LoginFormData {
   password: string;
 }
 
-function LoginPopup({ setIsAuthenticating }: { setIsAuthenticating: (param: boolean) => void }) {
+function LoginPopup({
+  setIsAuthenticating,
+}: {
+  setIsAuthenticating: (newAuthenticatingState: boolean) => void;
+}) {
   const t = useIntl();
-  const { togglePopup } = useContext(PopupContext);
+  const { setAuthState } = useContext(PopupContext);
 
   const defaultValues = DEMO_MODE
     ? {
@@ -28,7 +32,7 @@ function LoginPopup({ setIsAuthenticating }: { setIsAuthenticating: (param: bool
   } = useForm<LoginFormData>({ defaultValues });
 
   const handleLogin = handleSubmitForm(async () => {
-    togglePopup(undefined);
+    setAuthState(undefined);
   });
 
   return (
@@ -88,7 +92,7 @@ function LoginPopup({ setIsAuthenticating }: { setIsAuthenticating: (param: bool
         </div>
       </form>
       <p className="mt-8">
-        <span onClick={() => togglePopup(AUTH_NAME_STATES.Register)}>
+        <span onClick={() => setAuthState(AUTH_NAME_STATES.Register)}>
           {t.formatMessage(messages.createAccount)}
         </span>
       </p>
