@@ -94,6 +94,7 @@ export function Navbar() {
             </Link>
           </div>
           <div className="flex-1 flex justify-end">
+            <div id="my-portal"></div>
             {!authenticated ? (
               <button type="button">
                 <span onClick={handleClick} data-testid="userIcon">
