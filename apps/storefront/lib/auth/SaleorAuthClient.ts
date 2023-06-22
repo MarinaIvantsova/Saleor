@@ -17,6 +17,7 @@ export interface SaleorAuthClientProps {
   onAuthRefresh?: (isAuthenticating: boolean) => void;
   saleorApiUrl: string;
   storage: Storage | undefined;
+  authRefresh?: (isAuthenticating: boolean) => void;
 }
 
 export class SaleorAuthClient {
