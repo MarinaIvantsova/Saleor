@@ -16,13 +16,15 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        xs: "375px",
+        xs: { max: "375px" },
+        medium: { max: "768px" },
       },
       container: {
         center: true,
         padding: "1.6rem",
         screens: {
           "2xl": "1348px",
+          md: { max: "768px" },
         },
       },
       colors: {
@@ -33,6 +35,7 @@ module.exports = {
           4: "rgba(91, 104, 228, 0.4)",
           5: "rgba(91, 104, 228, 0.2)",
         },
+        layoutText: "rgb(18, 38, 89)",
         disabled: {
           DEFAULT: "#C2D1E4",
         },
@@ -57,6 +60,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ["Inconsolata"],
+        montserrat: ["Montserrat"],
       },
       fontWeight: {
         normal: 400,

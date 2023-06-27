@@ -108,6 +108,14 @@ export const pagesPath = {
           }),
         }),
       },
+      // apps\storefront\pages\schoolKids.tsx
+      schoolKids: {
+        $url: (url?: { query?: OptionalQuery1; hash?: string }) => ({
+          pathname: "/[channel]/[locale]/schoolKids/schoolKids" as const,
+          query: { channel, locale, ...url?.query },
+          hash: url?.hash,
+        }),
+      },
       search: {
         $url: (url?: { hash?: string }) => ({
           pathname: "/[channel]/[locale]/search" as const,
