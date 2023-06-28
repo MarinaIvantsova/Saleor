@@ -6,14 +6,12 @@ function Header() {
     <>
       <header className="flex justify-center">
         <div className="2xl:flex 2xl:w-[85.65%] 2xl:min-w-[1170px] 2xl:max-w-[1440px] 2xl:items-center 2xl:pt-[46px] medium:flex medium:flex-wrap medium:py-[30px] medium:w-[88.54%] medium:min-w-[680px]">
-          <div className="2xl:mr-[4.87%] medium:flex medium:mr-auto medium:mb-[39px]">
+          <div className="2xl:mr-[4.87%] medium:flex medium:items-center medium:mr-auto medium:mb-[39px]">
             <button
               onClick={() => setIsNavOpen((prev) => !prev)}
               type="button"
               id="button-open"
-              className={`2xl:hidden medium:${
-                isNavOpen ? "hidden" : "block medium:h-[18px] medium:mr-[3.6%]"
-              }`}
+              className={`2xl:hidden medium:${isNavOpen ? "hidden" : "block medium:mr-[3.68%]"}`}
             >
               <span className="visually-hidden">Открыть меню</span>
               <svg
@@ -31,7 +29,7 @@ function Header() {
               type="button"
               id="button-close"
               className={`2xl:hidden medium:${
-                isNavOpen ? "block medium:h-[18px] medium:mr-[3.6%]" : "hidden"
+                isNavOpen ? "block medium:h-[18px] medium:mr-[3.68%]" : "hidden"
               }`}
             >
               <span className="visually-hidden">Закрыть меню</span>
@@ -108,7 +106,7 @@ function Header() {
           >
             <ul
               className={`2xl:flex 2xl:gap-5 medium:${
-                isNavOpen ? "flex medium:flex-col" : "hidden"
+                isNavOpen ? "medium:flex medium:flex-col" : "hidden"
               }`}
             >
               <li className="text-[16px] medium:font-medium medium:mb-[30px]">
