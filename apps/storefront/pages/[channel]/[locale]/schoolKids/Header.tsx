@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { useState } from "react";
 
 function Header() {
@@ -11,9 +12,10 @@ function Header() {
               onClick={() => setIsNavOpen((prev) => !prev)}
               type="button"
               id="button-open"
-              className={`2xl:hidden medium:${
-                isNavOpen ? "hidden" : "block medium:h-[18px] medium:mr-[3.6%]"
-              }`}
+              className={clsx(
+                "2xl:hidden",
+                isNavOpen ? "medium:hidden" : "block medium:h-[18px] medium:mr-[3.6%]"
+              )}
             >
               <span className="visually-hidden">Открыть меню</span>
               <svg
@@ -30,9 +32,11 @@ function Header() {
               onClick={() => setIsNavOpen(false)}
               type="button"
               id="button-close"
-              className={`2xl:hidden medium:${
-                isNavOpen ? "block medium:h-[18px] medium:mr-[3.6%]" : "hidden"
-              }`}
+              //
+              className={clsx(
+                "2xl:hidden",
+                isNavOpen ? "medium:block medium:h-[18px] medium:mr-[3.6%]" : "hidden"
+              )}
             >
               <span className="visually-hidden">Закрыть меню</span>
               <svg
@@ -47,7 +51,7 @@ function Header() {
             </button>
             <a
               href="#"
-              className="medium:ml-[25px]   hover:opacity-50 transition-colors no-underline"
+              className="medium:ml-[25px] hover:opacity-50 transition-colors no-underline"
               aria-label="Иконка логотипа магазина"
             >
               <svg
@@ -100,16 +104,18 @@ function Header() {
             </a>
           </div>
           <div
-            className={`2xl:flex 2xl:w-82.9% 2xl:min-w-[970px] font-montserrat medium:${
+            className={clsx(
+              "2xl:flex 2xl:w-82.9% 2xl:min-w-[970px] font-montserrat",
               isNavOpen
-                ? "flex medium:flex-col medium::w-full medium:min-w-[680px] medium:pl-[1px]"
-                : "flex medium:flex-row"
-            }`}
+                ? "medium:flex medium:flex-col medium::w-full medium:min-w-[680px] medium:pl-[1px]"
+                : "medium:flex medium:flex-row"
+            )}
           >
             <ul
-              className={`2xl:flex 2xl:gap-5 medium:${
-                isNavOpen ? "flex medium:flex-col" : "hidden"
-              }`}
+              className={clsx(
+                "2xl:flex 2xl:gap-5",
+                isNavOpen ? "medium:flex medium:flex-col" : "medium:hidden"
+              )}
             >
               <li className="text-[16px] medium:font-medium medium:mb-[30px]">
                 <a
@@ -154,9 +160,10 @@ function Header() {
             </ul>
 
             <div
-              className={`2xl:flex 2xl:min-w-[192px] 2xl:ml-auto 2xl:mr-1 2xl:leading-[25px] medium:${
-                isNavOpen ? "ml-0" : ""
-              }`}
+              className={clsx(
+                "2xl:flex 2xl:min-w-[192px] 2xl:ml-auto 2xl:mr-1 2xl:leading-[25px]",
+                isNavOpen && "medium:ml-0"
+              )}
             >
               <a
                 href="tel:+74959834719"
