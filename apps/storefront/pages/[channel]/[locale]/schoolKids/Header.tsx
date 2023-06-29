@@ -3,28 +3,24 @@ import { useState } from "react";
 
 function Header() {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const toggleBurgerState = () => setIsNavOpen((prev) => !prev);
+  const menuItems = ["Методика", "Преподаватели", "Группы", "Отзывы", "Контакты"];
   return (
     <>
       <header className="flex justify-center">
-        <div className="2xl:flex 2xl:min-w-[1170px] 2xl:max-w-[1440px] 2xl:w-[85.65%]  2xl:items-center 2xl:pt-[46px] md:flex md:flex-wrap md:py-[30px] md:w-[88.54%] md:min-w-[680px]">
-          <div className="2xl:mr-[4.87%] md:flex md:mr-auto md:mb-[39px]">
+        <div className="2xl:flex 2xl:w-[85%] 2xl:items-center 2xl:pt-[46px] md:flex md:flex-wrap md:py-[30px] md:w-[90%] md:min-w-[680px] xs:flex xs:flex-col xs:w-[88%] xs:py-[30px]">
+          <div className="2xl:mr-[4%] md:flex md:mr-auto md:mb-[39px] xs:flex xs:mr-auto xs:mb-[34px]">
             <button
-              onClick={() => setIsNavOpen((prev) => !prev)}
+              onClick={toggleBurgerState}
               type="button"
               id="button-open"
               className={clsx(
-                "2xl:hidden",
-                isNavOpen ? "md:hidden" : "block md:h-[18px] md:mr-[3.6%]"
+                "2xl:hidden md:w-[24px] md:h-[12px] xs:w-[24px] xs:h-[12px]",
+                isNavOpen ? "md:hidden xs:hidden" : "md:block md:mr-[4%] xs:block xs:mr-[4%]"
               )}
             >
               <span className="visually-hidden">Открыть меню</span>
-              <svg
-                width="24"
-                height="14"
-                viewBox="0 0 24 14"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+              <svg viewBox="0 0 24 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0 1H24M0 7H24M0 13H24" stroke="#122659" strokeWidth="2" />
               </svg>
             </button>
@@ -32,30 +28,23 @@ function Header() {
               onClick={() => setIsNavOpen(false)}
               type="button"
               id="button-close"
-              //
               className={clsx(
-                "2xl:hidden",
-                isNavOpen ? "md:block md:h-[18px] md:mr-[3.6%]" : "hidden"
+                "2xl:hidden md:w-[18px] md:h-[18px] xs:w-[14px] xs:h-[14px]",
+                isNavOpen ? "md:block md:mr-[4%] xs:block xs:mr-[4%]" : "md:hidden xs:hidden"
               )}
             >
               <span className="visually-hidden">Закрыть меню</span>
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 20 20"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+              <svg className="" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1 1L10 10M19 19L10 10M10 10L19 1L1 19" stroke="#122947" strokeWidth="2" />
               </svg>
             </button>
             <a
               href="#"
-              className="md:ml-[25px] hover:opacity-50 transition-colors no-underline"
-              aria-label="Иконка логотипа магазина"
+              className="md:ml-[25px] xs:ml-[15px] hover:opacity-50 transition-colors no-underline"
+              aria-label="Logo Icon"
             >
               <svg
-                className="w-[132px] h-[21px]"
+                className="2xl:w-[143px] 2xl:h-[23px] md:w-[132px] md:h-[21px] xs:w-[111px] xs:h-[17px]"
                 viewBox="0 0 132 21"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -105,71 +94,50 @@ function Header() {
           </div>
           <div
             className={clsx(
-              "2xl:flex 2xl:w-82.9% 2xl:min-w-[970px] font-montserrat",
+              "2xl:flex 2xl:w-80% 2xl:min-w-[970px] font-montserrat",
               isNavOpen
-                ? "md:flex md:flex-col md:w-full md:min-w-[680px] md:pl-[1px]"
-                : "md:flex md:flex-row"
+                ? "md:flex md:flex-col md:w-full md:pl-[1px] xs:flex xs:flex-col"
+                : "md:flex md:flex-row xs:flex xs:flex-row"
             )}
           >
             <ul
               className={clsx(
                 "2xl:flex 2xl:gap-5",
-                isNavOpen ? "md:flex md:flex-col" : "md:hidden"
+                isNavOpen ? "md:flex md:flex-col xs:flex xs:flex-col" : "md:hidden xs:hidden"
               )}
             >
-              <li className="text-[16px] md:font-medium md:mb-[30px]">
-                <a
-                  className="text-layoutText hover:opacity-50 transition-colors no-underline md:text-[22px]"
-                  href="#"
-                >
-                  Методика
-                </a>
-              </li>
-              <li className="text-[16px] md:font-medium md:mb-[30px]">
-                <a
-                  className="text-layoutText hover:opacity-50 transition-colors no-underline md:text-[22px]"
-                  href="#"
-                >
-                  Преподаватели
-                </a>
-              </li>
-              <li className="text-[16px] md:font-medium md:mb-[30px]">
-                <a
-                  className="text-layoutText hover:opacity-50 transition-colors no-underline md:text-[22px]"
-                  href="#"
-                >
-                  Группы
-                </a>
-              </li>
-              <li className="text-[16px] md:font-medium md:mb-[30px]">
-                <a
-                  className="text-layoutText hover:opacity-50 transition-colors no-underline md:text-[22px]"
-                  href="#"
-                >
-                  Отзывы
-                </a>
-              </li>
-              <li className="text-[16px] md:font-medium md:mb-[36px]">
-                <a
-                  className="text-layoutText hover:opacity-50 transition-colors no-underline md:text-[22px]"
-                  href="#"
-                >
-                  Контакты
-                </a>
-              </li>
+              {menuItems.map((item, index) => {
+                return (
+                  <li
+                    className={clsx(
+                      "md:font-medium xs:font-medium",
+                      index === menuItems.length - 1
+                        ? "md:mb-[36px] xs:mb-[36px]"
+                        : "md:mb-[30px] xs:mb-[25px]"
+                    )}
+                  >
+                    <a
+                      className="text-layoutTextColor hover:opacity-50 transition-colors no-underline 2xl:text-md md:text-[22px] xs:text-[18px]"
+                      href="#"
+                    >
+                      {item}
+                    </a>
+                  </li>
+                );
+              })}
             </ul>
 
             <div
               className={clsx(
                 "2xl:flex 2xl:min-w-[192px] 2xl:ml-auto 2xl:mr-1 2xl:leading-[25px]",
-                isNavOpen && "md:ml-0"
+                isNavOpen ? "md:ml-0" : "xs:hidden"
               )}
             >
               <a
                 href="tel:+74959834719"
-                className="flex items-center text-[18px] text-layoutText font-medium hover:opacity-50 transition-colors no-underline"
+                className="flex items-center text-[18px] text-layoutTextColor font-medium hover:opacity-50 transition-colors no-underline"
               >
-                <span className="mr-[5px] w-[15px] h-[15px]" aria-label="Иконка телефона">
+                <span className="mr-[5px] w-[15px] h-[15px]" aria-label="Mobile Icon">
                   <svg
                     width="15"
                     height="15"

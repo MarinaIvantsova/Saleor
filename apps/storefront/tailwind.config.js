@@ -16,14 +16,15 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        xs: { max: "375px" },
-        md: { max: "768px" },
+        xs: { min: "375px", max: "767px" },
+        md: { min: "768px", max: "999px" },
+        "2xl": { min: "1000px", max: "4000px" },
       },
       container: {
         center: true,
         padding: "1.6rem",
         screens: {
-          "2xl": "1348px",
+          // "2xl": { min: "1348px" },
         },
       },
       colors: {
@@ -34,7 +35,7 @@ module.exports = {
           4: "rgba(91, 104, 228, 0.4)",
           5: "rgba(91, 104, 228, 0.2)",
         },
-        layoutText: "rgb(18, 38, 89)",
+        layoutTextColor: "rgb(18, 38, 89)",
         disabled: {
           DEFAULT: "#C2D1E4",
         },
