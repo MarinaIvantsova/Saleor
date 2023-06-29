@@ -17,14 +17,13 @@ module.exports = {
     extend: {
       screens: {
         xs: { max: "375px" },
-        medium: { max: "768px" },
+        md: { max: "768px" },
       },
       container: {
         center: true,
         padding: "1.6rem",
         screens: {
           "2xl": "1348px",
-          md: { max: "768px" },
         },
       },
       colors: {

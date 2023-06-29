@@ -6,15 +6,15 @@ function Header() {
   return (
     <>
       <header className="flex justify-center">
-        <div className="2xl:flex 2xl:w-[85.65%] 2xl:min-w-[1170px] 2xl:max-w-[1440px] 2xl:items-center 2xl:pt-[46px] medium:flex medium:flex-wrap medium:py-[30px] medium:w-[88.54%] medium:min-w-[680px]">
-          <div className="2xl:mr-[4.87%] medium:flex medium:mr-auto medium:mb-[39px]">
+        <div className="2xl:flex 2xl:min-w-[1170px] 2xl:max-w-[1440px] 2xl:w-[85.65%]  2xl:items-center 2xl:pt-[46px] md:flex md:flex-wrap md:py-[30px] md:w-[88.54%] md:min-w-[680px]">
+          <div className="2xl:mr-[4.87%] md:flex md:mr-auto md:mb-[39px]">
             <button
               onClick={() => setIsNavOpen((prev) => !prev)}
               type="button"
               id="button-open"
               className={clsx(
                 "2xl:hidden",
-                isNavOpen ? "medium:hidden" : "block medium:h-[18px] medium:mr-[3.6%]"
+                isNavOpen ? "md:hidden" : "block md:h-[18px] md:mr-[3.6%]"
               )}
             >
               <span className="visually-hidden">Открыть меню</span>
@@ -35,7 +35,7 @@ function Header() {
               //
               className={clsx(
                 "2xl:hidden",
-                isNavOpen ? "medium:block medium:h-[18px] medium:mr-[3.6%]" : "hidden"
+                isNavOpen ? "md:block md:h-[18px] md:mr-[3.6%]" : "hidden"
               )}
             >
               <span className="visually-hidden">Закрыть меню</span>
@@ -51,7 +51,7 @@ function Header() {
             </button>
             <a
               href="#"
-              className="medium:ml-[25px] hover:opacity-50 transition-colors no-underline"
+              className="md:ml-[25px] hover:opacity-50 transition-colors no-underline"
               aria-label="Иконка логотипа магазина"
             >
               <svg
@@ -107,51 +107,51 @@ function Header() {
             className={clsx(
               "2xl:flex 2xl:w-82.9% 2xl:min-w-[970px] font-montserrat",
               isNavOpen
-                ? "medium:flex medium:flex-col medium::w-full medium:min-w-[680px] medium:pl-[1px]"
-                : "medium:flex medium:flex-row"
+                ? "md:flex md:flex-col md:w-full md:min-w-[680px] md:pl-[1px]"
+                : "md:flex md:flex-row"
             )}
           >
             <ul
               className={clsx(
                 "2xl:flex 2xl:gap-5",
-                isNavOpen ? "medium:flex medium:flex-col" : "medium:hidden"
+                isNavOpen ? "md:flex md:flex-col" : "md:hidden"
               )}
             >
-              <li className="text-[16px] medium:font-medium medium:mb-[30px]">
+              <li className="text-[16px] md:font-medium md:mb-[30px]">
                 <a
-                  className="text-layoutText hover:opacity-50 transition-colors no-underline medium:text-[22px]"
+                  className="text-layoutText hover:opacity-50 transition-colors no-underline md:text-[22px]"
                   href="#"
                 >
                   Методика
                 </a>
               </li>
-              <li className="text-[16px] medium:font-medium medium:mb-[30px]">
+              <li className="text-[16px] md:font-medium md:mb-[30px]">
                 <a
-                  className="text-layoutText hover:opacity-50 transition-colors no-underline medium:text-[22px]"
+                  className="text-layoutText hover:opacity-50 transition-colors no-underline md:text-[22px]"
                   href="#"
                 >
                   Преподаватели
                 </a>
               </li>
-              <li className="text-[16px] medium:font-medium medium:mb-[30px]">
+              <li className="text-[16px] md:font-medium md:mb-[30px]">
                 <a
-                  className="text-layoutText hover:opacity-50 transition-colors no-underline medium:text-[22px]"
+                  className="text-layoutText hover:opacity-50 transition-colors no-underline md:text-[22px]"
                   href="#"
                 >
                   Группы
                 </a>
               </li>
-              <li className="text-[16px] medium:font-medium medium:mb-[30px]">
+              <li className="text-[16px] md:font-medium md:mb-[30px]">
                 <a
-                  className="text-layoutText hover:opacity-50 transition-colors no-underline medium:text-[22px]"
+                  className="text-layoutText hover:opacity-50 transition-colors no-underline md:text-[22px]"
                   href="#"
                 >
                   Отзывы
                 </a>
               </li>
-              <li className="text-[16px] medium:font-medium medium:mb-[36px]">
+              <li className="text-[16px] md:font-medium md:mb-[36px]">
                 <a
-                  className="text-layoutText hover:opacity-50 transition-colors no-underline medium:text-[22px]"
+                  className="text-layoutText hover:opacity-50 transition-colors no-underline md:text-[22px]"
                   href="#"
                 >
                   Контакты
@@ -162,7 +162,7 @@ function Header() {
             <div
               className={clsx(
                 "2xl:flex 2xl:min-w-[192px] 2xl:ml-auto 2xl:mr-1 2xl:leading-[25px]",
-                isNavOpen && "medium:ml-0"
+                isNavOpen && "md:ml-0"
               )}
             >
               <a
