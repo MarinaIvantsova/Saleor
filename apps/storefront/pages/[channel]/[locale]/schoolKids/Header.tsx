@@ -47,7 +47,7 @@ function Header() {
             </button>
             <a
               href="#"
-              className="transition-colors hover:opacity-50 no-underline 2xl:w-[143px] 2xl:h-[23px] md:w-[132px] md:h-[21px] xs:w-[111px] xs:h-[17px]  "
+              className="2xl:w-[143px] 2xl:h-[23px] md:w-[132px] md:h-[21px] xs:w-[111px] xs:h-[17px] transition-colors hover:opacity-50 no-underline "
               aria-label="Logo Icon"
             >
               <svg viewBox="0 0 132 21" fill="none" xmlns="http://www.w3.org/2000/svg">

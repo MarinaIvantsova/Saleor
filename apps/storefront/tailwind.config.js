@@ -23,9 +23,7 @@ module.exports = {
       container: {
         center: true,
         padding: "1.6rem",
-        screens: {
-          // "2xl": { min: "1348px" },
-        },
+        screens: {},
       },
       colors: {
         action: {
