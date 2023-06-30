@@ -1,11 +1,7 @@
 import Header from "./Header";
 
 function SchoolPage() {
-  return (
-    <>
-      <Header />
-    </>
-  );
+  return <Header />;
 }
 
 export default SchoolPage;
