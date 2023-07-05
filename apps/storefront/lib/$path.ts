@@ -108,12 +108,22 @@ export const pagesPath = {
           }),
         }),
       },
+
       // apps\storefront\pages\schoolKids.tsx
       schoolKids: {
         $url: (url?: { query?: OptionalQuery1; hash?: string }) => ({
           pathname: "/[channel]/[locale]/schoolKids/schoolKids" as const,
           query: { channel, locale, ...url?.query },
           hash: url?.hash,
+
+      redirect: {
+        _slug: (slug: string | number) => ({
+          $url: (url?: { query?: OptionalQuery1; hash?: string }) => ({
+            pathname: "/[channel]/[locale]/products/redirect" as const,
+            query: { channel, locale, slug, ...url?.query },
+            hash: url?.hash,
+          }),
+
         }),
       },
       search: {

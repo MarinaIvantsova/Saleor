@@ -36,7 +36,7 @@ module.exports = {
         layoutTextColor: "rgb(18, 38, 89)",
         bgBtnColor: "#ffd787",
         disabled: {
-          DEFAULT: "#C2D1E4",
+          DEFAULT: "#000000",
         },
         brand: {
           DEFAULT: "#5B68E4",

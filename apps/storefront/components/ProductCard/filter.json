@@ -1,0 +1,115 @@
+[
+  { "name": "Name", "type": "Search", "invert": false, "value": "" },
+  {
+    "name": "Subnetwork",
+    "type": "SNTree",
+    "invert": false,
+    "value": [
+      {
+        "id": 1,
+        "name": "NOC",
+        "oper_status": "Critical",
+        "isCheckedField": false,
+        "childs": [
+          {
+            "id": 2,
+            "name": "Default Region",
+            "oper_status": "Critical",
+            "isCheckedField": false,
+            "childs": [
+              {
+                "id": 5,
+                "name": "net_region",
+                "oper_status": "Unknown",
+                "isCheckedField": false,
+                "childs": [
+                  {
+                    "id": 3,
+                    "name": "Merkaz",
+                    "oper_status": "Unknown",
+                    "isCheckedField": false,
+                    "childs": [],
+                    "parents": 3,
+                    "count_devices": 0
+                  },
+                  {
+                    "id": 6,
+                    "name": "subnet",
+                    "oper_status": "Unknown",
+                    "isCheckedField": false,
+                    "childs": [],
+                    "parents": 3,
+                    "count_devices": 0
+                  }
+                ],
+                "parents": 2,
+                "count_devices": 0
+              },
+              {
+                "id": 4,
+                "name": "test1",
+                "oper_status": "Critical",
+                "isCheckedField": false,
+                "childs": [
+                  {
+                    "id": 7,
+                    "name": "123test",
+                    "oper_status": "Unknown",
+                    "isCheckedField": false,
+                    "childs": [],
+                    "parents": 3,
+                    "count_devices": 0
+                  }
+                ],
+                "parents": 2,
+                "count_devices": 5
+              }
+            ],
+            "parents": 1,
+            "count_devices": 28
+          }
+        ],
+        "parents": 0,
+        "count_devices": 0
+      }
+    ]
+  },
+  { "name": "IP", "type": "Search", "invert": false, "value": "" },
+  {
+    "name": "Type",
+    "type": "CheckBox",
+    "invert": false,
+    "value": ["123", "Cisco7613", "Juniper-MX240", "Ping Element", "Third-Party", "VSat"]
+  },
+  {
+    "name": "External Status",
+    "type": "CheckBox",
+    "invert": false,
+    "value": ["Managed"]
+  },
+  {
+    "name": "Vendor",
+    "type": "CheckBox",
+    "invert": false,
+    "value": ["Cisco", "Juniper", "Unknown"]
+  },
+  {
+    "name": "Status",
+    "type": "CheckBox",
+    "invert": false,
+    "value": ["Critical", "Disconnected", "Minor", "Ok"]
+  },
+  { "name": "Sys Location", "type": "Search", "invert": false, "value": "" },
+  {
+    "name": "Controller",
+    "type": "CheckBox",
+    "invert": false,
+    "value": ["Atrinet Controller"]
+  },
+  {
+    "name": "Groups",
+    "type": "CheckBox",
+    "invert": false,
+    "value": ["Example Slice 3", "Example Slice 4", "Kirill", "Vadim", "aa", "poiuytrfg"]
+  }
+]
