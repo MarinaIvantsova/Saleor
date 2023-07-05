@@ -1,7 +1,13 @@
 import Header from "./Header";
+import MainContent from "./Main/Main";
 
 function SchoolPage() {
-  return <Header />;
+  return (
+    <>
+      <Header />
+      <MainContent />
+    </>
+  );
 }
 
 export default SchoolPage;
