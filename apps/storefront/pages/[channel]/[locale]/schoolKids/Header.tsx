@@ -99,33 +99,35 @@ function Header() {
             isNavOpen ? "md:w-full md:flex-col xs:flex-col" : "md:flex-row xs:flex-row"
           )}
         >
-          <ul
-            className={clsx(
-              "2xl:flex 2xl:gap-5",
-              isNavOpen ? "md:flex md:flex-col xs:flex xs:flex-col" : "md:hidden xs:hidden"
-            )}
-          >
-            {MENUITEMS.map((item, index) => {
-              return (
-                <li
-                  key={item.id}
-                  className={clsx(
-                    "md:font-medium xs:font-medium",
-                    index === MENUITEMS.length - 1
-                      ? "md:mb-[36px] xs:mb-[36px]"
-                      : "md:mb-[30px] xs:mb-[25px]"
-                  )}
-                >
-                  <a
-                    className="hover:opacity-50 transition-colors no-underline text-layoutTextColor 2xl:text-md md:text-[22px] xs:text-[18px]"
-                    href="#"
+          <div>
+            <ul
+              className={clsx(
+                "2xl:flex 2xl:gap-5",
+                isNavOpen ? "md:flex md:flex-col xs:flex xs:flex-col" : "md:hidden xs:hidden"
+              )}
+            >
+              {MENUITEMS.map((item, index) => {
+                return (
+                  <li
+                    key={item.id}
+                    className={clsx(
+                      "md:font-medium xs:font-medium",
+                      index === MENUITEMS.length - 1
+                        ? "md:mb-[36px] xs:mb-[36px]"
+                        : "md:mb-[30px] xs:mb-[25px]"
+                    )}
                   >
-                    {item.name}
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
+                    <a
+                      className="hover:opacity-50 transition-colors no-underline text-layoutTextColor 2xl:text-md md:text-[22px] xs:text-[18px]"
+                      href="#"
+                    >
+                      {item.name}
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
 
           <div
             className={clsx(
