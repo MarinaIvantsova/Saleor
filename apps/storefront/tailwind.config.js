@@ -87,6 +87,8 @@ module.exports = {
         "50%": "50%",
         16: "4rem",
         "100%": "100%",
+        "30px": "30px",
+        "40px": "40px",
       },
       borderRadius: {
         DEFAULT: "4px",
@@ -101,6 +103,7 @@ module.exports = {
         "main-photo": "url('/main-photo.svg')",
         "main-photo-tablet": "url('/main-photo-tablet.svg')",
         "main-photo-mobile": "url('/main-photo-mobile.svg')",
+        carIconBg: "url('/car.svg')",
       },
     },
   },
