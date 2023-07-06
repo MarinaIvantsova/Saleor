@@ -29,7 +29,6 @@ export function ProductCard({ product }: ProductCardProps) {
   const paths = usePaths();
   const secondaryDescription = getCardSecondaryDescription(product);
   const thumbnailUrl = product.media?.find((media) => media.type === "IMAGE")?.url;
-  console.log(thumbnailUrl);
 
   return (
     <li key={product.id} className="w-full">
