@@ -17,8 +17,8 @@ module.exports = {
     extend: {
       screens: {
         xs: { min: "375px", max: "767px" },
-        md: { min: "768px", max: "999px" },
-        "2xl": { min: "1000px", max: "4000px" },
+        md: { min: "768px", max: "1199px" },
+        "2xl": { min: "1200px", max: "4000px" },
       },
       container: {
         center: true,
@@ -87,8 +87,8 @@ module.exports = {
         "50%": "50%",
         16: "4rem",
         "100%": "100%",
-        "30px": "30px",
-        "40px": "40px",
+        "48px": "48px",
+        "58px": "58px",
       },
       borderRadius: {
         DEFAULT: "4px",
@@ -103,7 +103,7 @@ module.exports = {
         "main-photo": "url('/main-photo.svg')",
         "main-photo-tablet": "url('/main-photo-tablet.svg')",
         "main-photo-mobile": "url('/main-photo-mobile.svg')",
-        carIconBg: "url('/car.svg')",
+        "car-icon-bg": "url('/car.svg')",
       },
     },
   },

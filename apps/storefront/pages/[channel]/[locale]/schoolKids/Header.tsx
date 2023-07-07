@@ -14,8 +14,10 @@ function Header() {
   const toggleBurgerState = () => setIsNavOpen((prev) => !prev);
   return (
     <header className="flex justify-center">
-      <div className="2xl:flex 2xl:w-[85%] md:w-[90%] md:flex md:flex-wrap md:pt-[30px] xs:w-[88%] xs:flex xs:flex-col xs:pt-[30px]">
-        <div className="2xl:min-w-[143px] 2xl:mr-[57px] 2xl:pt-[40px] 2xl:mb-[40px] md:flex md:mr-auto md:mb-[30px] xs:flex xs:mr-auto xs:mb-[34px]">
+      {/* 2xl:min-w-[1170px] 2xl:max-w-[1440px] */}
+      <div className="2xl:flex 2xl:max-w-[100%] 2xl:pt-[40px] md:w-[90%] md:flex md:flex-wrap md:pt-[30px] xs:w-[88%] xs:flex xs:flex-col xs:pt-[30px]">
+        {/* 2xl:mr-[57px] */}
+        <div className="2xl:min-w-[143px] 2xl:mr-[57px] md:flex md:mr-auto md:mb-[30px] xs:flex xs:mr-auto xs:mb-[34px]">
           <button
             onClick={toggleBurgerState}
             type="button"
@@ -95,43 +97,42 @@ function Header() {
         </div>
         <div
           className={clsx(
-            "2xl:w-80% 2xl:flex 2xl:mb-[45px] 2xl:pt-[46px] md:flex xs:flex font-montserrat",
+            "2xl:w-[80%] 2xl:min-w-[970px] 2xl:flex 2xl:mb-[45px] md:flex xs:flex font-montserrat",
             isNavOpen ? "md:w-full md:flex-col xs:flex-col" : "md:flex-row xs:flex-row"
           )}
         >
-          <div>
-            <ul
-              className={clsx(
-                "2xl:flex 2xl:gap-5",
-                isNavOpen ? "md:flex md:flex-col xs:flex xs:flex-col" : "md:hidden xs:hidden"
-              )}
-            >
-              {MENUITEMS.map((item, index) => {
-                return (
-                  <li
-                    key={item.id}
-                    className={clsx(
-                      "md:font-medium xs:font-medium",
-                      index === MENUITEMS.length - 1
-                        ? "md:mb-[36px] xs:mb-[36px]"
-                        : "md:mb-[30px] xs:mb-[25px]"
-                    )}
+          <ul
+            className={clsx(
+              "2xl:flex 2xl:gap-5 2xl:min-w-[533px] 2xl:w-[45%]",
+              isNavOpen ? "md:flex md:flex-col xs:flex xs:flex-col" : "md:hidden xs:hidden"
+            )}
+          >
+            {MENUITEMS.map((item, index) => {
+              return (
+                <li
+                  key={item.id}
+                  className={clsx(
+                    "md:font-medium xs:font-medium",
+                    index === MENUITEMS.length - 1
+                      ? "md:mb-[36px] xs:mb-[36px]"
+                      : "md:mb-[30px] xs:mb-[25px]"
+                  )}
+                >
+                  <a
+                    className="hover:opacity-50 transition-colors no-underline text-layoutTextColor 2xl:text-md md:text-[22px] xs:text-[18px]"
+                    href="#"
                   >
-                    <a
-                      className="hover:opacity-50 transition-colors no-underline text-layoutTextColor 2xl:text-md md:text-[22px] xs:text-[18px]"
-                      href="#"
-                    >
-                      {item.name}
-                    </a>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
+                    {item.name}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
 
           <div
             className={clsx(
-              "2xl:flex 2xl:w-[192px] 2xl:ml-[293px] 2xl:mr-1 2xl:leading-[25px]",
+              // 2xl:ml-auto 2xl:mr-[4px]
+              "2xl:flex  2xl:ml-auto 2xl:min-w-[192px] 2xl:leading-[25px]",
               isNavOpen ? "md:ml-0 md:mb-[46px] xs:mb-[40px]" : "xs:hidden"
             )}
           >
