@@ -14,9 +14,7 @@ function Header() {
   const toggleBurgerState = () => setIsNavOpen((prev) => !prev);
   return (
     <header className="flex justify-center">
-      {/* 2xl:min-w-[1170px] 2xl:max-w-[1440px] */}
       <div className="2xl:flex 2xl:max-w-[100%] 2xl:pt-[40px] md:w-[90%] md:flex md:flex-wrap md:pt-[30px] xs:w-[88%] xs:flex xs:flex-col xs:pt-[30px]">
-        {/* 2xl:mr-[57px] */}
         <div className="2xl:min-w-[143px] 2xl:mr-[57px] md:flex md:mr-auto md:mb-[30px] xs:flex xs:mr-auto xs:mb-[34px]">
           <button
             onClick={toggleBurgerState}
@@ -131,7 +129,6 @@ function Header() {
 
           <div
             className={clsx(
-              // 2xl:ml-auto 2xl:mr-[4px]
               "2xl:flex  2xl:ml-auto 2xl:min-w-[192px] 2xl:leading-[25px]",
               isNavOpen ? "md:ml-0 md:mb-[46px] xs:mb-[40px]" : "xs:hidden"
             )}
