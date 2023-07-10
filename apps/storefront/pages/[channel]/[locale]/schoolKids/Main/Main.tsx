@@ -1,11 +1,11 @@
 import Preview from "./Preview";
-// import Process from "./Process";
+import Process from "./Process";
 
 function MainContent() {
   return (
     <main>
       <Preview />
-      {/* <Process /> */}
+      <Process />
     </main>
   );
 }
