@@ -15,6 +15,7 @@ import PhotoIcon from "./photo.svg";
 import EyeIcon from "./eye.svg";
 import EyeHiddenIcon from "./eyeHidden.svg";
 import LanguageIcon from "./language.svg";
+import CarIcon from "./car.svg";
 
 export {
   PhotoIcon,
@@ -34,4 +35,5 @@ export {
   EyeIcon,
   EyeHiddenIcon,
   LanguageIcon,
+  CarIcon,
 };

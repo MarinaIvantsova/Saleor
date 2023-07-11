@@ -16,14 +16,14 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        xs: "375px",
+        xs: { min: "375px", max: "767px" },
+        md: { min: "768px", max: "1199px" },
+        "2xl": { min: "1200px", max: "4000px" },
       },
       container: {
         center: true,
         padding: "1.6rem",
-        screens: {
-          "2xl": "1348px",
-        },
+        screens: {},
       },
       colors: {
         action: {
@@ -33,8 +33,10 @@ module.exports = {
           4: "rgba(91, 104, 228, 0.4)",
           5: "rgba(91, 104, 228, 0.2)",
         },
+        layoutTextColor: "rgb(18, 38, 89)",
+        bgBtnColor: "#ffd787",
         disabled: {
-          DEFAULT: "#000000",
+          DEFAULT: "#C2D1E4",
         },
         brand: {
           DEFAULT: "#5B68E4",
@@ -57,12 +59,18 @@ module.exports = {
       },
       fontFamily: {
         sans: ["Inconsolata"],
+        montserrat: ["Montserrat"],
+        rubik: ["Rubik"],
       },
       fontWeight: {
         normal: 400,
         regular: 500,
         semibold: 600,
         bold: 800,
+      },
+      content: {
+        carIcon: 'url("/car.svg")',
+        cloudIcon: 'url("/cloud.svg")',
       },
       fontSize: {
         xs: ["1.1rem", "1.6rem"],
@@ -72,6 +80,19 @@ module.exports = {
         lg: ["2.4rem", "3.2rem"],
         xl: ["3.2rem", "4.6rem"],
       },
+      backgroundSize: {
+        auto: "auto",
+        cover: "cover",
+        contain: "contain",
+        "50%": "50%",
+        16: "4rem",
+        "100%": "100%",
+        "48px": "48px",
+        "58px": "58px",
+        "135px": "135px",
+        "101px": "101px",
+        "67px": "67px",
+      },
       borderRadius: {
         DEFAULT: "4px",
         full: "50%",
@@ -80,6 +101,14 @@ module.exports = {
         "decorative-center": "0 32px 0 -16px #394052",
         decorative: "16px 16px 0 #394052",
         modal: "0px 4px 20px 0px rgba(0, 0, 0, 0.12)",
+      },
+      backgroundImage: {
+        "main-photo": "url('/main-photo.svg')",
+        "main-photo-tablet": "url('/main-photo-tablet.svg')",
+        "main-photo-mobile": "url('/main-photo-mobile.svg')",
+        "car-icon": "url('/car.svg')",
+        "girl-icon": "url('/girl.svg')",
+        "rocket-icon": "url('/rocket.svg')",
       },
     },
   },

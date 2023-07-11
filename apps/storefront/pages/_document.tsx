@@ -20,6 +20,14 @@ class MyDocument extends Document<{ lang?: string }> {
             href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;500;600;800&display=swap"
             rel="stylesheet"
           />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Roboto&display=swap"
+            rel="stylesheet"
+          />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Rubik:wght@100;200;300;400;500;600;700;800;900&display=swap"
+            rel="stylesheet"
+          />
         </Head>
         <body spellCheck={false}>
           <Main />

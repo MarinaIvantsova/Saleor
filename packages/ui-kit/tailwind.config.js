@@ -17,6 +17,7 @@ const theme = {
   colors: {
     transparent: "transparent",
     skeleton: "#DEE4EF",
+
     background: {
       primary: "#FAFAFA",
       secondary: "#FFFFFF",
