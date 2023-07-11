@@ -6,10 +6,10 @@ function Process() {
           Как проходит обучение
         </h2>
         <div className="w-[40%]">
-          <h3 className="2xl:text-[20px] 2xl:leading-[30px] md:w-[70%] md:text-[18px] xs:text-md xs:leading-[22px] xs:mb-[15px] xs:w-min-[175px] mb-[20px] text-layoutTextColor font-montserrat font-medium">
+          <h3 className="2xl:text-[20px] 2xl:leading-[30px] md:w-[70%] md:text-[18px] xs:text-md xs:leading-[22px] xs:min-w-[176px] mb-[20px] text-layoutTextColor font-montserrat font-medium">
             Играя&nbsp;— обучаем, обучая&nbsp;— развиваем
           </h3>
-          <div className="w-[85%] xs:w-[285px] 2xl:text-md 2xl:leading-[23px] md:text-base md:leading-[20px] font-montserrat text-layoutTextColor xs:text-base">
+          <div className="w-[85%] xs:w-[280px] 2xl:text-md 2xl:leading-[23px] md:text-base md:leading-[20px] font-montserrat text-layoutTextColor xs:text-base">
             <p className="mb-[12px]">
               Мы&nbsp;взяли все самое лучшее из традиционных и&nbsp;современных методик обучения
               и&nbsp;развития детей. Обучение английскому языку происходит легко и&nbsp;интересно,
