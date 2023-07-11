@@ -5,8 +5,7 @@ function Process() {
         <h2 className="2xl:mb-[70px] md:mb-[30px] xs:text-[22px] xs:leading-[30px] xs:mb-[28px] w-full font-rubik text-[36px] text-layoutTextColor leading-[50px] text-center font-medium">
           Как проходит обучение
         </h2>
-        {/* 2xl:mr-[85px] md:mr-[41px] xs:w-full xs:mb-[15px] */}
-        <div className="w-[40%] ">
+        <div className="w-[40%]">
           <h3 className="2xl:text-[20px] 2xl:leading-[30px] md:w-[70%] md:text-[18px] xs:text-md xs:leading-[22px] xs:mb-[15px] xs:w-min-[175px] mb-[20px] text-layoutTextColor font-montserrat font-medium">
             Играя&nbsp;— обучаем, обучая&nbsp;— развиваем
           </h3>
