@@ -7,15 +7,15 @@ function Preview() {
           <h2 className="mt-0 mb-[2px] font-rubik 2xl:text-[42px] 2xl:leading-[45px] text-layoutTextColor md:text-[42px] xs:text-[28px] font-medium">
             Английский язык
           </h2>
-          <p className="mt-0 font-rubik font-medium text-[18px] leading-25  text-layoutTextColor xs:text-md">
+          <p className="mt-0 font-rubik font-medium text-[18px] leading-25  text-layoutTextColor xs:text-[16px]">
             для детей от&nbsp;2&nbsp;до&nbsp;7&nbsp;лет
           </p>
-          <p className="2xl:w-[40%] min-w-[375px] mt-[30px] mb-[45px] md:w-[40%] xs:w-[40%] xs:min-w-[225px] text-layoutTextColor xs:text-[14px] font-montserrat text-md leading-[22px]">
+          <p className="2xl:w-[40%] min-w-[375px] mt-[30px] mb-[45px] md:w-[40%] xs:w-[40%] xs:min-w-[225px] text-layoutTextColor xs:text-[14px] font-montserrat text-[16px] leading-[22px]">
             Гармоничное развитие детей и&nbsp;обучение через полное погружение в&nbsp;языковую среду
           </p>
 
           <a
-            className="block pt-[15px] w-[166px] h-[50px] xs:w-[130px] xs:pt-[10px] xs:h-[40px] xs:text-[14px] xs:leading-[20px]  bg-bgBtnColor font-montserrat no-underline text-center font-medium text-md leading-[22px] rounded-[35px] text-layoutTextColor hover:opacity-50 focus:opacity-50 active:opacity-50"
+            className="block pt-[15px] w-[166px] h-[50px] xs:w-[130px] xs:pt-[10px] xs:h-[40px] xs:text-[14px] xs:leading-[20px]  bg-bgBtnColor font-montserrat no-underline text-center font-medium text-[16px] leading-[22px] rounded-[35px] text-layoutTextColor hover:opacity-50 focus:opacity-50 active:opacity-50"
             href="#"
           >
             Записаться

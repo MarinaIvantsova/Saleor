@@ -117,7 +117,7 @@ function Header() {
                   )}
                 >
                   <a
-                    className="hover:opacity-50 transition-colors no-underline text-layoutTextColor 2xl:text-md md:text-[22px] xs:text-[18px]"
+                    className="hover:opacity-50 transition-colors no-underline text-layoutTextColor 2xl:text-[16px] md:text-[22px] xs:text-[18px]"
                     href="#"
                   >
                     {item.name}
