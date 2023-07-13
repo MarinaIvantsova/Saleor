@@ -2,9 +2,9 @@ import clsx from "clsx";
 
 const TYPESITEMS = [
   {
+    id: 0,
     subtitle: "Развитие 10 видов интеллекта",
     text: "Учимся общаться, развивать эмоциональный, творческий интеллект и многое другое",
-    id: 0,
     className: `before:bg-first-arrow before:w-[182px] before:h-[61px] before:bg-182px before:-top-[15%] before:right-[20%]
   md:before:bg-first-arrow-tablet md:before:w-[135px] md:before:h-[45px] md:before:bg-135px md:before:-top-0 md:before:left-[60%] 
   xs:before:bg-first-arrow-m xs:before:w-[66px] xs:before:h-[174px] xs:before:bg-66px xs:before:top-[100%] xs:before:-left-[2%] 
@@ -12,9 +12,9 @@ const TYPESITEMS = [
   `,
   },
   {
+    id: 1,
     subtitle: "Языковое погружение",
     text: "Занятия проходят полностью на английском языке, независимо от типа задания",
-    id: 1,
     className: `2xl:pl-[195px] 2xl:pr-[35px] 2xl:pt-0 2xl:pb-[45px] 2xl:mb-[130px] 
   md:!pr-0 md:pl-[125px] md:!pb-[45px] md:!pt-0 md:mb-[75px]
   before:bg-second-arrow before:w-[115px] before:h-[126px] before:bg-115px before:top-[72%] before:left-[28%] 
@@ -23,16 +23,16 @@ const TYPESITEMS = [
   `,
   },
   {
+    id: 2,
     subtitle: "Педагоги — носители языка",
     text: "Занятия ведут преподаватели из США, Великобритании и Канады, для которых английский язык является родным",
-    id: 2,
     className: `2xl:before:bg-third-arrow 2xl:before:w-[115px] 2xl:before:h-[126px] 2xl:before:bg-115px 2xl:before:-top-[25%] 2xl:before:left-[40%]
   xs:before:bg-third-arrow xs:before:w-[57px] xs:before:h-[72px] xs:before:bg-57px xs:before:-top-[25%] xs:before:-left-[1%]`,
   },
   {
+    id: 3,
     subtitle: "Небольшие группы",
     text: "Дети занимаются в группах до 5 человек, что позволяет применять индивидуальный подход к каждому",
-    id: 3,
     className: `2xl:pl-[195px] 2xl:pr-[35px] 2xl:pt-0 2xl:-mt-[25px] 2xl:mb-[60px] before:bg-fourth-arrow before:w-[153px] before:h-[87px] before:top-[40%] before:left-[10%]
     md:!pr-0 md:pl-[125px] md:!pb-[60px] md:!pt-0 md:mb-[75px] md:-mt-[22px]
     md:before:bg-fourth-arrow md:before:w-[110px] md:before:h-[50px] md:before:bg-110px md:before:top-[45%] md:before:left-0 
@@ -41,9 +41,9 @@ const TYPESITEMS = [
   },
 ];
 
-const commomClassName = `relative w-[50%] pt-[45px] pr-[160px] 2xl:pb-[130px]
+const commomClassName = `relative before:absolute w-[50%] pt-[45px] pr-[160px] 2xl:pb-[130px]
  md:pt-[35px] md:pr-[40px] md:pb-[75px]
- xs:w-[90%] xs:pt-[35px] xs:pr-0 xs:mb-[25px] before:absolute before:bg-no-repeat`;
+ xs:w-[90%] xs:pt-[35px] xs:pr-0 xs:mb-[25px] before:bg-no-repeat`;
 
 function Types() {
   return (
