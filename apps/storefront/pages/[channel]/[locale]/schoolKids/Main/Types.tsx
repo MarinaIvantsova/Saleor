@@ -50,13 +50,13 @@ function Types() {
     <section className="w-[70%] mt-[130px] mx-auto 2xl:min-w-[1000px] md:w-[90%] md:min-w-[680px] xs:w-[90%] xs:mt-[20px] xs:min-w-[290px] xs:max-w-[380px]">
       <h2 className="visually-hidden">Виды обучения</h2>
       <ul
-        className="relative flex flex-wrap py-0 pl-0 mb-0 list-none
+        className="relative flex flex-wrap py-0 pl-0 mb-0
        before:absolute before:bg-laughing before:transform before:translate-x-[20%] before:z-10
        before:-top-[3%] before:left-[25%] before:w-[332px] before:h-[381px] md:before:w-[225px] before:bg-no-repeat 
-       md:before:bg-225px md:before:top-[7%] md:before:h-[257px] md:before:translate-x-[30%] 2xl:before:bg-332px xs:flex-column 
-       xs:before:w-[184px] xs:before:h-[210px] xs:before:top-auto xs:before:bottom-[40%] xs:before:bg-184px xs:before:-translate-x-[10%]"
+       md:before:bg-225px md:before:top-[7%] md:before:h-[257px] md:before:translate-x-[30%] 2xl:before:bg-332px xs:flex-col 
+       xs:before:w-[184px] xs:before:h-[210px] xs:before:top-auto xs:before:bottom-[35%] xs:before:bg-184px xs:before:-translate-x-[10%]"
       >
-        {TYPESITEMS.map((item, index) => {
+        {TYPESITEMS.map((item) => {
           return (
             <li key={item.id} className={clsx(commomClassName, item.className)}>
               <h3 className="mb-[8px] 2xl:text-[20px] 2xl:leading-[28px] md:text-[18px] md:leading-[25px] xs:text-[16px] xs:leading-[22px] font-montserrat font-medium text-layoutTextColor">
