@@ -60,7 +60,7 @@ xs:w-full xs:min-w-[290px] xs:max-w-[330px] xs:min-h-[295px] xs:mx-auto
 `;
 
 const commonClassNameBtb =
-  "block pt-[15px] w-[166px] h-[50px] xs:w-[150px] xs:pt-[12px] xs:h-[45px] xs:text-[16px] xs:leading-[20px] bg-cardColor font-montserrat no-underline text-center font-medium text-[16px] leading-[22px] rounded-[35px] text-layoutTextColor hover:opacity-50 focus:opacity-50 active:opacity-50";
+  "block w-[166px] h-[50px] pt-[15px] xs:w-[150px] xs:pt-[12px] xs:h-[45px] xs:text-[16px] xs:leading-[20px] bg-cardColor font-montserrat no-underline text-center font-medium text-[16px] leading-[22px] rounded-[35px] text-layoutTextColor hover:opacity-50 focus:opacity-50 active:opacity-50";
 
 function Groups() {
   return (
@@ -73,21 +73,17 @@ function Groups() {
       <div
         className="relative flex before:absolute flex-wrap justify-between mx-auto 2xl:pt-[170px] 2xl:pl-[3px] 2xl:w-[70%] 2xl:min-w-[975px]
   w-[90%] md:pt-[100px] pl-0 xs:min-w-[290px] xs:pt-[55px] 
-  before:bg-star before:top-[15%] before:-left-[5%] 2xl:before:w-[56px] 2xl:before:h-[58px] 2xl:before:bg-56px 2xl:before:bg-no-repeat
-  before:w-[40px] before:h-[40px] before:bg-40px xs:before:top-0
+  before:bg-star before:top-[15%] before:-left-[5%] 2xl:before:w-[56px] 2xl:before:h-[58px] 2xl:before:bg-[length:56px] 2xl:before:bg-no-repeat
+  before:w-[40px] before:h-[40px] before:bg-[length:40px] xs:before:top-0 
   "
       >
         <header className="flex w-full flex-wrap">
-          <h2
-            className="my-0 text-[36px] leading-[50px] font-rubik font-medium text-layoutTextColor xs:text-[22px] xs:leading-[31px] xs:w-full
-      "
-          >
+          <h2 className="my-0 text-[36px] leading-[50px] font-rubik font-medium text-layoutTextColor xs:text-[22px] xs:leading-[31px] xs:w-full">
             Наши группы
           </h2>
           <p
             className="ml-auto 2xl:mb-0 2xl:mt-[5px] 2xl:w-[35%] font-montserrat text-layoutTextColor 2xl:text-[16px] 2xl:leading-[23px]
-      md:mt-[7px] md:w-[40%] md:text-[14px] md:leading-[20px] xs:ml-0 xs:w-[55%] xs:mt-[15px] 
-      "
+      md:mt-[7px] md:w-[40%] md:text-[14px] md:leading-[20px] xs:ml-0 xs:w-[55%] xs:mt-[15px]"
           >
             В&nbsp;группах занимается до&nbsp;5&nbsp;человек.
             <br />
@@ -102,19 +98,19 @@ function Groups() {
                   <h3 className="mt-[40px] mb-[30px] md:mt-[40px] md:mb-[20px] font-montserrat text-layoutTextColor font-medium text-[20px] leading-[28px] ">
                     {item.subtitle}
                   </h3>
-                  <ul className="pl-0">
+                  <ul>
                     {item.grouptextitems.map((item) => {
                       return (
                         <li
                           key={item.id}
-                          className="text-[16px] leading-[22px] mt-0 mb-[8px] font-montserrat text-layoutTextColor"
+                          className="text-[16px] leading-[22px] mb-[8px] font-montserrat text-layoutTextColor"
                         >
                           {item.text}
                         </li>
                       );
                     })}
                   </ul>
-                  <p className="mt-0 mb-[30px] md:mb-[25px] text-layoutTextColor font-montserrat font-medium text-[20px] leading-[28px]">
+                  <p className="mb-[30px] md:mb-[25px] text-layoutTextColor font-montserrat font-medium text-[20px] leading-[28px]">
                     {item.price}&nbsp;₽ <span>в&nbsp;месяц</span>
                   </p>
                   <a className={clsx(commonClassNameBtb, item.classNameBtnColor)} href="#">

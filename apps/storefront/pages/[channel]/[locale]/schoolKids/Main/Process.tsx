@@ -1,7 +1,7 @@
 function Process() {
   return (
     <section className="2xl:mt-[118px] md:mt-[98px] xs:mt-[55px] xs:mx-auto">
-      <div className="flex relative flex-wrap mx-auto w-[90%] 2xl:w-[70%] before:absolute before:bg-no-repeat 2xl:before:bg-girl-icon before:top-[5%] before:-left-[15%] before:w-[105px] before:h-[115px] after:absolute after:bg-rocket-icon after:bg-no-repeat after:-top-[15%] after:left-[85%] 2xl:after:w-[135px] 2xl:after:h-[68px] md:after:bg-101px md:after:w-[101px] md:after:h-[50px] xs:min-w-[290px] xs:after:-top-[7%] xs:after:left-[80%] xs:after:w-[67px] xs:after:h-[34px] xs:after:bg-67px">
+      <div className="flex relative flex-wrap mx-auto w-[90%] 2xl:w-[70%] before:absolute before:bg-no-repeat 2xl:before:bg-girl-icon before:top-[5%] before:-left-[15%] before:w-[105px] before:h-[115px] after:absolute after:bg-rocket-icon after:bg-no-repeat after:-top-[15%] after:left-[85%] 2xl:after:w-[135px] 2xl:after:h-[68px] md:after:bg-[length:101px] md:after:w-[101px] md:after:h-[50px] xs:min-w-[290px] xs:after:-top-[7%] xs:after:left-[80%] xs:after:w-[67px] xs:after:h-[34px] xs:after:bg-[length:67px]">
         <h2 className="2xl:mb-[70px] md:mb-[30px] xs:text-[22px] xs:leading-[30px] xs:mb-[28px] w-full font-rubik text-[36px] text-layoutTextColor leading-[50px] text-center font-medium">
           Как проходит обучение
         </h2>
