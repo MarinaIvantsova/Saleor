@@ -83,7 +83,7 @@ function Groups() {
           </h2>
           <p
             className="ml-auto 2xl:mb-0 2xl:mt-[5px] 2xl:w-[35%] font-montserrat text-layoutTextColor 2xl:text-[16px] 2xl:leading-[23px]
-      md:mt-[7px] md:w-[40%] md:text-[14px] md:leading-[20px] xs:ml-0 xs:w-[55%] xs:mt-[15px]"
+      md:mt-[7px] md:w-[40%] md:text-[14px] md:leading-[20px] xs:ml-0 xs:w-[55%] xs:mt-[15px] xs:text-[14px] xs:w-[90%]"
           >
             В&nbsp;группах занимается до&nbsp;5&nbsp;человек.
             <br />

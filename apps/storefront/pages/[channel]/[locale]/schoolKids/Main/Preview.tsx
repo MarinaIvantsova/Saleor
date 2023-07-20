@@ -7,7 +7,7 @@ function Preview() {
           <h2 className="mt-0 mb-[2px] font-rubik 2xl:text-[42px] 2xl:leading-[45px] text-layoutTextColor md:text-[42px] xs:text-[28px] font-medium">
             Английский язык
           </h2>
-          <p className="mt-0 font-rubik font-medium text-[18px] leading-25  text-layoutTextColor xs:text-[16px]">
+          <p className="mt-0 font-rubik font-medium text-[18px] leading-25 text-layoutTextColor xs:text-[16px]">
             для детей от&nbsp;2&nbsp;до&nbsp;7&nbsp;лет
           </p>
           <p className="2xl:w-[40%] min-w-[375px] mt-[30px] mb-[45px] md:w-[40%] xs:w-[40%] xs:min-w-[225px] text-layoutTextColor xs:text-[14px] font-montserrat text-[16px] leading-[22px]">
