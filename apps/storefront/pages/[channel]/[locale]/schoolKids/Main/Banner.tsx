@@ -32,7 +32,7 @@ function Banner() {
       "
       >
         <h2
-          className="mx-auto mt-0 mb-[35px] font-rubik font-medium text-[36px] leading-[45px] text-center text-bannerColor
+          className="w-[60%] mx-auto mt-0 mb-[35px] font-rubik font-medium text-[36px] leading-[45px] text-center text-bannerColor
         md:w-[90%] md:leading-[45px] mb-[30px]
         xs:w-[90%] xs:leading-[28px] xs:text-[22px]"
         >
