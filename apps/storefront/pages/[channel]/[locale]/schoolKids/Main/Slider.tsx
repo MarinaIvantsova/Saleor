@@ -40,7 +40,7 @@ const properties = {
         <path
           d="M16 5L1 5M1 5L5 1M1 5L5 9"
           stroke="#122659"
-          stroke-width="2"
+          strokeWidth="2"
           stroke-linecap="round"
           stroke-linejoin="round"
         />
@@ -59,7 +59,7 @@ const properties = {
         <path
           d="M1 5H16M16 5L12 9M16 5L12 1"
           stroke="#122659"
-          stroke-width="2"
+          strokeWidth="2"
           stroke-linecap="round"
           stroke-linejoin="round"
         />
