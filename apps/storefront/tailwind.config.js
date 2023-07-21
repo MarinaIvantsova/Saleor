@@ -38,6 +38,7 @@ module.exports = {
         bannerColor: "#FEFCFA",
         bgBtnColor: "#ffd787",
         bgGroupMobColor: "#F7FAFC",
+        bgContacts: "#F7FAFC",
         cardColor: "#8dd9e5",
         cardColorYellow: "#FFD787",
         cardColorPink: "#FEB9CC",
