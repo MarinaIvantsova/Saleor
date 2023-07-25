@@ -7,7 +7,7 @@ function Teachers() {
       className="relative before:absolute after:absolute mx-auto mt-[115px] pb-[60px] 2xl:w-[70%] 
       2xl:before:bg-house before:w-[58px] before:h-[97px] before:-top-[20%] before:left-[95%] before:bg-no-repeat
       xs:before:bg-house xs:before:bg-[length:48px] xs:before:-top-[10%] 
-      2xl:after:bg-pencil after:top-[75%] after:-left-[50px] after:w-[44px] after:h-[132px] 
+      2xl:after:bg-[url('/pencil.svg')] after:top-[75%] after:-left-[50px] after:w-[44px] after:h-[132px] 
       md:w-[710px] md:mt-[105px] md:pb-[60px] xs:w-[290px] xs:mt-[55px] xs:pb-[50px]
     "
     >

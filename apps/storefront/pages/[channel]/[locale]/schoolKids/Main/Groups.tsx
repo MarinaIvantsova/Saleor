@@ -65,15 +65,15 @@ const commonClassNameBtb =
 function Groups() {
   return (
     <section
-      className="2xl:bg-groups-bg 2xl:-mt-[5px] 2xl:pb-[70px] 2xl:min-h-[800px] bg-100%
-                    md:bg-groups-tablet md:mt-[25px] md:min-h-[615px]
+      className="2xl:bg-[url('/groups-bg.svg')] 2xl:-mt-[5px] 2xl:pb-[70px] 2xl:min-h-[800px] bg-100%
+                    md:bg-[url('/groups-tablet.svg')] md:mt-[25px] md:min-h-[615px]
                     xs:bg-bgGroupMobColor xs:mt-[30px] xs:pb-[30px] xs:min-h-[1200px] 
                     "
     >
       <div
         className="relative flex before:absolute flex-wrap justify-between mx-auto 2xl:pt-[170px] 2xl:pl-[3px] 2xl:w-[70%] 2xl:min-w-[975px]
   w-[90%] md:pt-[100px] pl-0 xs:min-w-[290px] xs:pt-[55px] 
-  before:bg-star before:top-[15%] before:-left-[5%] 2xl:before:w-[56px] 2xl:before:h-[58px] 2xl:before:bg-[length:56px] 2xl:before:bg-no-repeat
+  before:bg-[url('/star.svg')] before:top-[15%] before:-left-[5%] 2xl:before:w-[56px] 2xl:before:h-[58px] 2xl:before:bg-[length:56px] 2xl:before:bg-no-repeat
   before:w-[40px] before:h-[40px] before:bg-[length:40px] xs:before:top-0 
   "
       >

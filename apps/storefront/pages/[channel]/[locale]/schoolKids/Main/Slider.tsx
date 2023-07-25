@@ -41,8 +41,8 @@ const properties = {
           d="M16 5L1 5M1 5L5 1M1 5L5 9"
           stroke="#122659"
           strokeWidth="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </svg>
     </button>
@@ -60,8 +60,8 @@ const properties = {
           d="M1 5H16M16 5L12 9M16 5L12 1"
           stroke="#122659"
           strokeWidth="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </svg>
     </button>
@@ -73,25 +73,25 @@ const SLIDERITEMS = [
     id: 0,
     name: "Kate Smith",
     country: "США",
-    bg: "bg-slider-1",
+    bg: "bg-[url('/slider-1.png')]",
   },
   {
     id: 1,
     name: "Samuel King",
     country: "США",
-    bg: "bg-slider-2",
+    bg: "bg-[url('/slider-2.png')]",
   },
   {
     id: 2,
     name: "Nikole Young",
     country: "Канада",
-    bg: "bg-slider-3",
+    bg: "bg-[url('/slider-3.png')]",
   },
   {
     id: 3,
     name: "Karoline Bush",
     country: "Канада",
-    bg: "bg-slider-4",
+    bg: "bg-[url('/slider-4.png')]",
   },
 ];
 

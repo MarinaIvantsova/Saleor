@@ -25,9 +25,9 @@ function Banner() {
       </div>
       <div
         className="relative w-[70%] mx-auto pt-[90px] md:w-[90%] md:pt-[110px] xs:w-[75%] xs:pt-[65px]
-      before:absolute before:bg-rainbow before:top-[30%] before:-left-[5%] 2xl:before:w-[155px] 2xl:before:h-[107px] 2xl:before:bg-[length:155px_107px] before:bg-no-repeat
+      before:absolute before:bg-[url('/rainbow.svg')] before:top-[30%] before:-left-[5%] 2xl:before:w-[155px] 2xl:before:h-[107px] 2xl:before:bg-[length:155px_107px] before:bg-no-repeat
       md:before:w-[101px] md:before:h-[70px] md:before:top-[60%] md:before:left-[5%] md:before:bg-[length:101px_70px]
-      after:absolute after:bg-boy after:top-[40%] after:left-[85%] 2xl:after:w-[118px] 2xl:after:h-[133px] 2xl:after:bg-[length:118px_133px] after:bg-no-repeat
+      after:absolute after:bg-[url('/boy.svg')] after:top-[40%] after:left-[85%] 2xl:after:w-[118px] 2xl:after:h-[133px] 2xl:after:bg-[length:118px_133px] after:bg-no-repeat
       md:after:w-[78px] md:after:h-[89px] md:after:top-[50%] md:after:bg-[length:78px_89px]
       "
       >
