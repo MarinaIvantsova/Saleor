@@ -5,22 +5,18 @@ import Types from "./Types";
 import Teachers from "./Teachers";
 import Banner from "./Banner";
 import Contacts from "./Contacts";
-import Footer from "../Footer";
 
 function MainContent() {
   return (
-    <>
-      <main>
-        <Preview />
-        <Process />
-        <Types />
-        <Groups />
-        <Teachers />
-        <Banner />
-        <Contacts />
-      </main>
-      <Footer />
-    </>
+    <main>
+      <Preview />
+      <Process />
+      <Types />
+      <Groups />
+      <Teachers />
+      <Banner />
+      <Contacts />
+    </main>
   );
 }
 

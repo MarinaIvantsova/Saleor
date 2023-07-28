@@ -20,8 +20,8 @@ const GROUPSITEMS = [
   {
     id: 1,
     subtitle: "Бэбики-2",
-    classNameItem: "!border-cardColorYellow",
-    classNameBtnColor: "!bg-cardColorYellow",
+    classNameItem: "!border-[#FFD787]",
+    classNameBtnColor: "!bg-[#FFD787]",
     price: "2500",
     grouptextitems: [
       {
@@ -37,8 +37,8 @@ const GROUPSITEMS = [
   {
     id: 2,
     subtitle: "Бэбики-3",
-    classNameItem: "!border-cardColorPink !mr-auto",
-    classNameBtnColor: "!bg-cardColorPink",
+    classNameItem: "!border-[#FEB9CC] !mr-auto",
+    classNameBtnColor: "!bg-[#FEB9CC]",
     price: "4000",
     grouptextitems: [
       {
@@ -59,15 +59,46 @@ md:mr-[30px] md:w-[30%] md:min-w-[205px] md:min-h-[295px]
 xs:w-full xs:min-w-[290px] xs:max-w-[330px] xs:min-h-[295px] xs:mx-auto
 `;
 
-const commonClassNameBtb =
-  "block w-[166px] h-[50px] pt-[15px] xs:w-[150px] xs:pt-[12px] xs:h-[45px] xs:text-[16px] xs:leading-[20px] bg-cardColor font-montserrat no-underline text-center font-medium text-[16px] leading-[22px] rounded-[35px] text-layoutTextColor hover:opacity-50 focus:opacity-50 active:opacity-50";
+const commonClassNameBtn = `block w-[166px] h-[50px] pt-[15px] xs:w-[150px] xs:pt-[12px] xs:h-[45px] xs:text-[16px] xs:leading-[20px] bg-cardColor font-montserrat no-underline
+ text-center font-medium text-[16px] leading-[22px] rounded-[35px] text-layoutTextColor hover:opacity-50 focus:opacity-50 active:opacity-50`;
 
+const renderTypes = () => {
+  return GROUPSITEMS.map((item) => {
+    return (
+      <li key={item.id} className={clsx(commomClassNameItem, item.classNameItem)}>
+        <article className="items-center">
+          <h3 className="mt-[40px] mb-[30px] md:mt-[40px] md:mb-[20px] font-montserrat text-layoutTextColor font-medium text-[20px] leading-[28px] ">
+            {item.subtitle}
+          </h3>
+          <ul>
+            {item.grouptextitems.map((item) => {
+              return (
+                <li
+                  key={item.id}
+                  className="text-[16px] leading-[22px] mb-[8px] font-montserrat text-layoutTextColor"
+                >
+                  {item.text}
+                </li>
+              );
+            })}
+          </ul>
+          <p className="mb-[30px] md:mb-[25px] text-layoutTextColor font-montserrat font-medium text-[20px] leading-[28px]">
+            <span whitespace-nowrap>{item.price} ₽</span> <span whitespace-nowrap>в месяц</span>
+          </p>
+          <a className={clsx(commonClassNameBtn, item.classNameBtnColor)} href="#">
+            Записаться
+          </a>
+        </article>
+      </li>
+    );
+  });
+};
 function Groups() {
   return (
     <section
       className="2xl:bg-[url('/groups-bg.svg')] 2xl:-mt-[5px] 2xl:pb-[70px] 2xl:min-h-[800px] bg-100%
                     md:bg-[url('/groups-tablet.svg')] md:mt-[25px] md:min-h-[615px]
-                    xs:bg-bgGroupMobColor xs:mt-[30px] xs:pb-[30px] xs:min-h-[1200px] 
+                    xs:bg-[#F7FAFC] xs:mt-[30px] xs:pb-[30px] xs:min-h-[1200px] 
                     "
     >
       <div
@@ -85,41 +116,16 @@ function Groups() {
             className="ml-auto 2xl:mb-0 2xl:mt-[5px] 2xl:w-[35%] font-montserrat text-layoutTextColor 2xl:text-[16px] 2xl:leading-[23px]
       md:mt-[7px] md:w-[40%] md:text-[14px] md:leading-[20px] xs:ml-0 xs:w-[55%] xs:mt-[15px] xs:text-[14px] xs:w-[90%]"
           >
-            В&nbsp;группах занимается до&nbsp;5&nbsp;человек.
+            <span whitespace-nowrap>В группах</span>занимается
+            <span whitespace-nowrap>до 5 человек.</span>
             <br />
-            Все дети в&nbsp;группе примерно одного возраста и&nbsp;уровня знаний.
+            Все дети <span whitespace-nowrap>в группе </span>примерно одного возраста
+            <span whitespace-nowrap>и уровня</span>
+            знаний.
           </p>
         </header>
         <ul className="flex flex-wrap w-full 2xl:pl-0 2xl:mt-[52px] 2xl:mb-0 md:mt-[45px] xs:mt-[35px] xs:flex-col">
-          {GROUPSITEMS.map((item) => {
-            return (
-              <li key={item.id} className={clsx(commomClassNameItem, item.classNameItem)}>
-                <article className="items-center">
-                  <h3 className="mt-[40px] mb-[30px] md:mt-[40px] md:mb-[20px] font-montserrat text-layoutTextColor font-medium text-[20px] leading-[28px] ">
-                    {item.subtitle}
-                  </h3>
-                  <ul>
-                    {item.grouptextitems.map((item) => {
-                      return (
-                        <li
-                          key={item.id}
-                          className="text-[16px] leading-[22px] mb-[8px] font-montserrat text-layoutTextColor"
-                        >
-                          {item.text}
-                        </li>
-                      );
-                    })}
-                  </ul>
-                  <p className="mb-[30px] md:mb-[25px] text-layoutTextColor font-montserrat font-medium text-[20px] leading-[28px]">
-                    {item.price}&nbsp;₽ <span>в&nbsp;месяц</span>
-                  </p>
-                  <a className={clsx(commonClassNameBtb, item.classNameBtnColor)} href="#">
-                    Записаться
-                  </a>
-                </article>
-              </li>
-            );
-          })}
+          {renderTypes()}
         </ul>
       </div>
     </section>

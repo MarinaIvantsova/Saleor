@@ -2,6 +2,8 @@ import clsx from "clsx";
 import React from "react";
 import { Slide } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
+import PrevArrow from "../SliderArrows/PrevArrow";
+import NextArrow from "../SliderArrows/NextArrow";
 
 const responsiveSettings = [
   {
@@ -30,40 +32,12 @@ const responsiveSettings = [
 const properties = {
   prevArrow: (
     <button className="absolute w-[17px] top-[110%] !left-[45%] xs:!top-[85%] xs:!left-[15%]">
-      <svg
-        width="17"
-        height="10"
-        viewBox="0 0 17 10"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M16 5L1 5M1 5L5 1M1 5L5 9"
-          stroke="#122659"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
+      <PrevArrow />
     </button>
   ),
   nextArrow: (
     <button className="absolute w-[17px] top-[110%] !left-[50%] xs:!top-[85%] xs:!left-[80%]">
-      <svg
-        width="17"
-        height="10"
-        viewBox="0 0 17 10"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M1 5H16M16 5L12 9M16 5L12 1"
-          stroke="#122659"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
+      <NextArrow />
     </button>
   ),
 };
@@ -107,13 +81,13 @@ const Slider = () => {
             <div className="transform translate-x-[30%]">
               <p
                 className="mt-[10px] text-[20px] font-montserrat font-medium leading-[28px] text-layoutTextColor 
-              md:text-[18px] md:leading-[25px] xs:text-[16px] md:leading-[22px]  
+                 md:text-[18px] md:leading-[25px] xs:text-[16px] md:leading-[22px]  
               "
               >
                 {item.name}
               </p>
 
-              <p className="ml-[25px] mt-[3px] text-[16px] leading-[23px] text-layoutaAddColor font-montserrat ">
+              <p className="ml-[25px] mt-[3px] text-[16px] leading-[23px] text-[#677085] font-montserrat ">
                 {item.country}
               </p>
             </div>

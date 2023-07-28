@@ -41,9 +41,27 @@ const TYPESITEMS = [
   },
 ];
 
-const commomClassName = `relative before:absolute w-[50%] pt-[45px] pr-[160px] 2xl:pb-[130px]
+const commonClassNameArrows = `relative before:absolute w-[50%] pt-[45px] pr-[160px] 2xl:pb-[130px]
  md:pt-[35px] md:pr-[40px] md:pb-[75px]
  xs:w-[90%] xs:pt-[35px] xs:pr-0 xs:mb-[25px] before:bg-no-repeat`;
+
+const renderTypes = () => {
+  return TYPESITEMS.map((item) => {
+    return (
+      <li key={item.id} className={clsx(commonClassNameArrows, item.className)}>
+        <h3
+          className="mb-[8px] 2xl:text-[20px] 2xl:leading-[28px] md:text-[18px] md:leading-[25px] xs:text-[16px] xs:leading-[22px] font-montserrat font-medium
+         text-layoutTextColor"
+        >
+          {item.subtitle}
+        </h3>
+        <p className="2xl:max-w-[320px] 2xl:text-[16px] 2xl:leading-[23px] md:w-[90%] xs:w-full text-[14px] leading-[20px] font-montserrat text-layoutTextColor ">
+          {item.text}
+        </p>
+      </li>
+    );
+  });
+};
 
 function Types() {
   return (
@@ -56,18 +74,7 @@ function Types() {
        md:before:bg-[length:225px] md:before:top-[7%] md:before:h-[257px] md:before:translate-x-[30%] 2xl:before:bg-[length:332px] xs:flex-col 
        xs:before:w-[184px] xs:before:h-[210px] xs:before:top-auto xs:before:bottom-[35%] xs:before:bg-[length:184px] xs:before:-translate-x-[10%]"
       >
-        {TYPESITEMS.map((item) => {
-          return (
-            <li key={item.id} className={clsx(commomClassName, item.className)}>
-              <h3 className="mb-[8px] 2xl:text-[20px] 2xl:leading-[28px] md:text-[18px] md:leading-[25px] xs:text-[16px] xs:leading-[22px] font-montserrat font-medium text-layoutTextColor">
-                {item.subtitle}
-              </h3>
-              <p className="2xl:max-w-[320px] 2xl:text-[16px] 2xl:leading-[23px] md:w-[90%] xs:w-full text-[14px] leading-[20px] font-montserrat text-layoutTextColor ">
-                {item.text}
-              </p>
-            </li>
-          );
-        })}
+        {renderTypes()}
       </ul>
     </section>
   );

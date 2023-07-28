@@ -59,11 +59,38 @@ const CONTACTSINFO = [
   },
 ];
 
+const renderContactInfo = () => {
+  return CONTACTSINFO.map((item) => (
+    <div key={item.id} className={clsx(commomClassNameItem, item.id === 3 && "md:pt-[25px]")}>
+      <p className={clsx(commomClassNameSub)}>{item.subtitle}</p>
+      {item.link ? (
+        <p className={clsx(commomClassNameText)}>
+          <a className="hover:opacity-50 focus:opacity-50 active:opacity-50" href={item.link}>
+            {item.text}
+          </a>
+        </p>
+      ) : (
+        <p className={clsx(commomClassNameText)}>{item.text}</p>
+      )}
+    </div>
+  ));
+};
+const renderSocialItems = () => {
+  return SOCIALITEMS.map((item) => {
+    return (
+      <li key={item.id}>
+        <a href="#" aria-label={item.aria}>
+          {item.svg}
+        </a>
+      </li>
+    );
+  });
+};
 function Contacts() {
   return (
     <section className="2xl:relative md:flex md:flex-col 2xl:min-h-[610px] 2xl:mt-[200px] md:min-h-[905px] md:mt-[110px]">
       <div
-        className="2xl:absolute 2xl:w-[413px] 2xl:-top-[10%] 2xl:left-[10%] 2xl:min-h-[610px] 2xl:p-[60px] 2xl:rounded-[12px] bg-bgContacts
+        className="2xl:absolute 2xl:w-[413px] 2xl:-top-[10%] 2xl:left-[10%] 2xl:min-h-[610px] 2xl:p-[60px] 2xl:rounded-[12px] bg-[#F7FAFC]
          2xl:shadow-[0px_4px_-40px_rgba(217,217,217,0.3)] 2xl:z-10
         md:w-full md:min-h-[468px] md:py-[70px]
          xs:min-h-[485px] xs:pt-[70px] xs:pb-[45px]
@@ -75,42 +102,11 @@ function Contacts() {
         >
           Мы ждем вас
         </h2>
-        <div className={clsx(commonClassNameWrapper)}>
-          {CONTACTSINFO.map((item) => (
-            <div
-              key={item.id}
-              className={clsx(commomClassNameItem, item.id === 3 && "md:pt-[25px]")}
-            >
-              <p className={clsx(commomClassNameSub)}>{item.subtitle}</p>
-              {item.link ? (
-                <p className={clsx(commomClassNameText)}>
-                  <a
-                    className="hover:opacity-50 focus:opacity-50 active:opacity-50"
-                    href={item.link}
-                  >
-                    {item.text}
-                  </a>
-                </p>
-              ) : (
-                <p className={clsx(commomClassNameText)}>{item.text}</p>
-              )}
-            </div>
-          ))}
-        </div>
+        <div className={clsx(commonClassNameWrapper)}>{renderContactInfo()}</div>
 
         <div className={clsx(commomClassNameItem)}>
           <p className={clsx(commomClassNameSub)}>Мы в соцсетях:</p>
-          <ul className="flex flex-wrap">
-            {SOCIALITEMS.map((item) => {
-              return (
-                <li key={item.id}>
-                  <a href="#" aria-label={item.aria}>
-                    {item.svg}
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
+          <ul className="flex flex-wrap">{renderSocialItems()}</ul>
         </div>
       </div>
       <section className="overflow-hidden">
