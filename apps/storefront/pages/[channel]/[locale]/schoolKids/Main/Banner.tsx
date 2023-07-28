@@ -3,7 +3,6 @@ import Image from "next/legacy/image";
 import EnrollButton from "../Button/EnrollButton";
 
 function Banner() {
-  const BANNERBTN = "mx-auto";
   return (
     <section className="relative 2xl:mt-[120px] min-h-[450px] xs:min-h-[385px] md:mt-[80px] pb-[50px]">
       <div className="md:hidden xs:hidden 2xl:w-full">
@@ -52,7 +51,7 @@ function Banner() {
           <span whitespace-nowrap>о школе</span> <span whitespace-nowrap>и ответим</span>
           <span whitespace-nowrap>на все</span>ваши вопросы
         </p>
-        {EnrollButton({ marginX: BANNERBTN })}
+        <EnrollButton className="mx-auto" />
       </div>
     </section>
   );
