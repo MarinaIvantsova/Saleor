@@ -94,7 +94,6 @@ export function Navbar() {
             </Link>
           </div>
           <div className="flex-1 flex justify-end">
-            <div id="my-portal"></div>
             {!authenticated ? (
               <button type="button">
                 <span onClick={handleClick} data-testid="userIcon">
@@ -107,7 +106,7 @@ export function Navbar() {
             <a href={externalCheckoutUrl} className="ml-2 hidden xs:flex" data-testid="cartIcon">
               <NavIconButton isButton={false} icon="bag" aria-hidden="true" counter={counter} />
             </a>
-            <Link href={paths.search.$url()} passHref legacyBehavior>
+            <Link href={paths.schoolKids.$url()} passHref legacyBehavior>
               <a href="pass" className="hidden lg:flex ml-2" data-testid="searchIcon">
                 <NavIconButton isButton={false} icon="spyglass" />
               </a>

@@ -40,7 +40,6 @@ export function HomepageBlock({ menuItem }: HomepageBlockProps) {
       >
         {translate(menuItem, "name")}
       </h1>
-
       <ProductCollection filter={filter} allowMore={false} />
       <div className="flex flex-row-reverse p-4">
         <Link href={link} passHref legacyBehavior>
