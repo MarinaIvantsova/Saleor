@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import { usePaths } from "@/lib/paths";
 import { useCheckout } from "@/lib/providers/CheckoutProvider";
@@ -16,6 +16,8 @@ import UserMenu from "./UserMenu";
 import { useRegions } from "@/components/RegionsProvider";
 import { invariant } from "@apollo/client/utilities/globals";
 import { useUser } from "@/lib/useUser";
+import { AUTH_NAME_STATES, PopupContext } from "../LoginPopup/popupContext";
+import { useSaleorAuthContext } from "@/lib/auth";
 
 export function Navbar() {
   const paths = usePaths();
@@ -67,6 +69,16 @@ export function Navbar() {
       0
     ) || 0;
 
+  const { setAuthState, toggleIconUser } = useContext(PopupContext);
+  const { isAuthenticating } = useSaleorAuthContext();
+
+  const handleClick = () => {
+    if (!isAuthenticating) {
+      toggleIconUser();
+      setAuthState(AUTH_NAME_STATES.Login);
+    }
+  };
+
   return (
     <>
       <div className={clsx(styles.navbar)}>
@@ -82,12 +94,13 @@ export function Navbar() {
             </Link>
           </div>
           <div className="flex-1 flex justify-end">
+            <div id="my-portal"></div>
             {!authenticated ? (
-              <Link href={paths.account.login.$url()} passHref legacyBehavior>
-                <a href="pass" data-testid="userIcon">
+              <button type="button">
+                <span onClick={handleClick} data-testid="userIcon">
                   <NavIconButton isButton={false} icon="user" aria-hidden="true" />
-                </a>
-              </Link>
+                </span>
+              </button>
             ) : (
               <UserMenu />
             )}

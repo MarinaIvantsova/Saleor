@@ -13,6 +13,9 @@ import { API_URI, DEMO_MODE } from "@/lib/const";
 import { CheckoutProvider } from "@/lib/providers/CheckoutProvider";
 import { useAuthenticatedApolloClient } from "@/lib/auth/useAuthenticatedApolloClient";
 import { SaleorAuthProvider, useAuthChange, useSaleorAuthClient } from "@/lib/auth";
+import { PopupProvider } from "@/components/LoginPopup/popupContext";
+import AuthPagesRouter from "@/components/AuthPagesRouter/AuthPagesRouter";
+import ContainerComponent from "@/components/ContainerComponent/ContainerComponent";
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -30,7 +33,8 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     storage: typeof window !== "undefined" ? window.localStorage : undefined,
   });
 
-  const { saleorAuthClient } = useSaleorAuthClientProps;
+  const { saleorAuthClient, setIsAuthenticating } = useSaleorAuthClientProps;
+  // const { authState } = useContext(PopupContext);
 
   const { apolloClient, resetClient } = useAuthenticatedApolloClient(
     saleorAuthClient.fetchWithAuth
@@ -44,12 +48,17 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     <SaleorAuthProvider {...useSaleorAuthClientProps}>
       <ApolloProvider client={apolloClient}>
         <CheckoutProvider>
-          <RegionsProvider>
-            <BaseSeo />
-            <NextNProgress color="#5B68E4" options={{ showSpinner: false }} />
-            {DEMO_MODE && <DemoBanner />}
-            {getLayout(<Component {...pageProps} />)}
-          </RegionsProvider>
+          <PopupProvider>
+            <RegionsProvider>
+              <BaseSeo />
+              <NextNProgress color="#5B68E4" options={{ showSpinner: false }} />
+              {DEMO_MODE && <DemoBanner />}
+              <ContainerComponent>
+                {getLayout(<Component {...pageProps} />)}
+                {<AuthPagesRouter setIsAuthenticating={setIsAuthenticating} />}
+              </ContainerComponent>
+            </RegionsProvider>
+          </PopupProvider>
         </CheckoutProvider>
       </ApolloProvider>
     </SaleorAuthProvider>

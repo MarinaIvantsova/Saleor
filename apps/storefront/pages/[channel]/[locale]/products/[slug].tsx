@@ -4,7 +4,7 @@ import { GetStaticPaths, GetStaticPropsContext, InferGetStaticPropsType } from "
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Custom404 from "pages/404";
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement, useContext, useEffect, useState } from "react";
 import { useIntl } from "react-intl";
 
 import { Layout, RichText, VariantSelector } from "@/components";
@@ -28,7 +28,10 @@ import {
 } from "@/saleor/api";
 import { serverApolloClient } from "@/lib/auth/useAuthenticatedApolloClient";
 import { useUser } from "@/lib/useUser";
-import { VariantSelectorProps } from "@/components/product/VariantSelector";
+
+import { AUTH_NAME_STATES, PopupContext } from "@/components/LoginPopup/popupContext";
+import { useSaleorAuthContext } from "@/lib/auth";
+
 
 export type OptionalQuery = {
   variant?: string;
@@ -84,6 +87,16 @@ function ProductPage({ product }: VariantSelectorProps<typeof getStaticProps>) {
   const [addToCartError, setAddToCartError] = useState("");
   const { variants } = product;
 
+  const { setAuthState, wasUserIconClicked } = useContext(PopupContext);
+  const { isAuthenticating } = useSaleorAuthContext();
+  const [wasProductAdded, setProductAdded] = useState(false);
+
+  useEffect(() => {
+    if (isAuthenticating && wasProductAdded && !wasUserIconClicked) {
+      void addToCartAfterLogin();
+    }
+  }, [isAuthenticating]);
+
   if (!product?.id) {
     return <Custom404 />;
   }
@@ -93,7 +106,17 @@ function ProductPage({ product }: VariantSelectorProps<typeof getStaticProps>) {
   // @ts-ignore
   const selectedVariant = product?.variants?.find((v) => v?.id === selectedVariantID) || undefined;
 
-  const onAddToCart = async () => {
+  const onAddToCart = () => {
+    setProductAdded(true);
+
+    if (!isAuthenticating) {
+      setAuthState(AUTH_NAME_STATES.Login);
+    } else {
+      void addToCartAfterLogin();
+    }
+  };
+
+  const addToCartAfterLogin = async () => {
     // Clear previous error messages
     setAddToCartError("");
 
@@ -260,7 +283,6 @@ function ProductPage({ product }: VariantSelectorProps<typeof getStaticProps>) {
               <RichText jsonStringData={description} />
             </div>
           )}
-
           <AttributeDetails product={product} selectedVariant={selectedVariant} />
         </div>
       </main>

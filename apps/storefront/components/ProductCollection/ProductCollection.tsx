@@ -1,6 +1,8 @@
 import { Text } from "@saleor/ui-kit";
 import React, { useEffect } from "react";
 import { useIntl } from "react-intl";
+import { createPortal } from "react-dom";
+import ModalContent from "../ProductCard/ModalContent";
 
 import { mapEdgesToItems } from "@/lib/maps";
 import {
@@ -53,6 +55,11 @@ export function ProductCollection({
   const { loading, error, data, fetchMore } = useProductCollectionQuery({
     variables,
   });
+  let products = mapEdgesToItems(data?.products);
+  // useEffect(() => {
+  //   products.slice(4);
+  //   console.log(products);
+  // }, [products]);
 
   useEffect(() => {
     if (setCounter) {
@@ -71,7 +78,6 @@ export function ProductCollection({
   if (loading) return <Spinner />;
   if (error) return <p>Error</p>;
 
-  const products = mapEdgesToItems(data?.products);
   if (products.length === 0) {
     return (
       <Text size="xl" color="secondary" data-testid="noResultsText">
@@ -79,24 +85,47 @@ export function ProductCollection({
       </Text>
     );
   }
+  products = products.slice(products.length - 4);
   return (
     <div>
+      {/* {createPortal(
+        <ModalContent />,
+        // @ts-ignore
+        document.getElementById("my-portal")
+      )} */}
       <ul
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12"
         data-testid="productsList"
       >
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+        {products.map((product, index) => {
+          return <ProductCard key={product.id} product={product} />;
+        })}
       </ul>
-      {allowMore && (
+      {/* {allowMore && (
         <Pagination
           onLoadMore={onLoadMore}
           pageInfo={data?.products?.pageInfo}
           itemsCount={data?.products?.edges.length}
           totalCount={data?.products?.totalCount || undefined}
         />
-      )}
+      )} */}
+      <button
+        className="p-3 bg-indigo-600 text-white focus:ring hover:bg-indigo-800 "
+        onClick={() => {
+          onLoadMore();
+        }}
+      >
+        Preious
+      </button>
+      <button
+        className="p-3 bg-indigo-600 text-white focus:ring hover:bg-indigo-800 "
+        onClick={() => {
+          onLoadMore();
+          console.log(onLoadMore());
+        }}
+      >
+        Next
+      </button>
     </div>
   );
 }
