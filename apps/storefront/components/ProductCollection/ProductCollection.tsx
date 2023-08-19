@@ -56,10 +56,6 @@ export function ProductCollection({
     variables,
   });
   let products = mapEdgesToItems(data?.products);
-  // useEffect(() => {
-  //   products.slice(4);
-  //   console.log(products);
-  // }, [products]);
 
   useEffect(() => {
     if (setCounter) {
@@ -85,19 +81,14 @@ export function ProductCollection({
       </Text>
     );
   }
-  products = products.slice(products.length - 4);
+  const productsProcessed = products.slice(products.length - 4);
   return (
     <div>
-      {/* {createPortal(
-        <ModalContent />,
-        // @ts-ignore
-        document.getElementById("my-portal")
-      )} */}
       <ul
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12"
         data-testid="productsList"
       >
-        {products.map((product, index) => {
+        {productsProcessed.map((product) => {
           return <ProductCard key={product.id} product={product} />;
         })}
       </ul>
