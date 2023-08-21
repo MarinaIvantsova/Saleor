@@ -69,6 +69,7 @@ export function ProductCollection({
         },
       }),
   };
+
   const { loading, error, data, fetchMore } = useProductCollectionQuery({
     variables,
   });

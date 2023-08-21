@@ -29,6 +29,7 @@ import {
 import { serverApolloClient } from "@/lib/auth/useAuthenticatedApolloClient";
 import { useUser } from "@/lib/useUser";
 
+
 import { AUTH_NAME_STATES, PopupContext } from "@/components/LoginPopup/popupContext";
 import { useSaleorAuthContext } from "@/lib/auth";
 
@@ -70,8 +71,7 @@ export const getStaticProps = async (
     revalidate: 60, // value in seconds, how often ISR will trigger on the server
   };
 };
-// @ts-ignore
-function ProductPage({ product }: VariantSelectorProps<typeof getStaticProps>) {
+function ProductPage({ product }: InferGetStaticPropsType<typeof getStaticProps>) {
   const router = useRouter();
   const paths = usePaths();
   const t = useIntl();
@@ -85,7 +85,16 @@ function ProductPage({ product }: VariantSelectorProps<typeof getStaticProps>) {
   const [addProductToCheckout] = useCheckoutAddProductLineMutation();
   const [loadingAddToCheckout, setLoadingAddToCheckout] = useState(false);
   const [addToCartError, setAddToCartError] = useState("");
-  const { variants } = product;
+
+  const { setAuthState, wasUserIconClicked } = useContext(PopupContext);
+  const { isAuthenticating } = useSaleorAuthContext();
+  const [wasProductAdded, setProductAdded] = useState(false);
+
+  useEffect(() => {
+    if (isAuthenticating && wasProductAdded && !wasUserIconClicked) {
+      void addToCartAfterLogin();
+    }
+  }, [isAuthenticating]);
 
   const { setAuthState, wasUserIconClicked } = useContext(PopupContext);
   const { isAuthenticating } = useSaleorAuthContext();
@@ -103,7 +112,6 @@ function ProductPage({ product }: VariantSelectorProps<typeof getStaticProps>) {
 
   const selectedVariantID = getSelectedVariantID(product, router);
 
-  // @ts-ignore
   const selectedVariant = product?.variants?.find((v) => v?.id === selectedVariantID) || undefined;
 
   const onAddToCart = () => {
@@ -170,7 +178,6 @@ function ProductPage({ product }: VariantSelectorProps<typeof getStaticProps>) {
 
     if (errors.length === 0) {
       // Product successfully added
-
       return;
     }
 
@@ -219,19 +226,7 @@ function ProductPage({ product }: VariantSelectorProps<typeof getStaticProps>) {
               >
                 <a>
                   <p className="text-md mt-2 font-medium text-gray-600 cursor-pointer">
-                    {translate(product.category, "name")}{" "}
-                    {
-                      // @ts-ignore
-                      variants.map((variant) => (
-                        <span
-                          className="grow"
-                          data-testid={`variantOf${variant.name}`}
-                          key={variant.id}
-                        >
-                          {translate(variant, "name")}/
-                        </span>
-                      ))
-                    }
+                    {translate(product.category, "name")}
                   </p>
                 </a>
               </Link>
@@ -240,29 +235,20 @@ function ProductPage({ product }: VariantSelectorProps<typeof getStaticProps>) {
 
           <VariantSelector product={product} selectedVariantID={selectedVariantID} />
 
-          <Link
-            href={paths.redirect._slug(product.slug).$url()}
-            prefetch={false}
-            passHref
-            legacyBehavior
+          <button
+            onClick={onAddToCart}
+            type="submit"
+            disabled={isAddToCartButtonDisabled}
+            className={clsx(
+              "w-full py-3 px-8 flex items-center justify-center text-base bg-action-1 text-white disabled:bg-disabled hover:bg-white border-2 border-transparent  focus:outline-none",
+              !isAddToCartButtonDisabled && "hover:border-action-1 hover:text-action-1"
+            )}
+            data-testid="addToCartButton"
           >
-            <a href="pass">
-              <button
-                onClick={onAddToCart}
-                type="submit"
-                disabled={isAddToCartButtonDisabled}
-                className={clsx(
-                  "w-full py-3 px-8 flex items-center justify-center text-base bg-action-1 text-white disabled:bg-disabled hover:bg-white border-2 border-transparent  focus:outline-none",
-                  !isAddToCartButtonDisabled && "hover:border-action-1 hover:text-action-1"
-                )}
-                data-testid="addToCartButton"
-              >
-                {loadingAddToCheckout
-                  ? t.formatMessage(messages.adding)
-                  : t.formatMessage(messages.addToCart)}
-              </button>
-            </a>
-          </Link>
+            {loadingAddToCheckout
+              ? t.formatMessage(messages.adding)
+              : t.formatMessage(messages.addToCart)}
+          </button>
 
           {!selectedVariant && (
             <p className="text-base text-yellow-600">
