@@ -1,8 +1,6 @@
 import { Text } from "@saleor/ui-kit";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useIntl } from "react-intl";
-import { createPortal } from "react-dom";
-import ModalContent from "../ProductCard/ModalContent";
 
 import { mapEdgesToItems } from "@/lib/maps";
 import {
@@ -40,6 +38,25 @@ export function ProductCollection({
   const t = useIntl();
   const { query } = useRegions();
 
+  let [products, setProducts] = useState([]);
+  let [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage] = useState(4);
+
+  const indexOfLastPost = currentPage * productsPerPage;
+  const indexOfFirstPost = indexOfLastPost - productsPerPage;
+  const currentPosts = products.slice(indexOfFirstPost, indexOfLastPost);
+
+  const decrement = () => {
+    if (currentPage !== 1) {
+      setCurrentPage((currentPage -= 1));
+    }
+  };
+  const increment = () => {
+    if (currentPage !== Math.ceil(products.length / productsPerPage)) {
+      setCurrentPage((currentPage += 1));
+    }
+  };
+
   const variables: ProductCollectionQueryVariables = {
     filter,
     first: perPage,
@@ -55,13 +72,18 @@ export function ProductCollection({
   const { loading, error, data, fetchMore } = useProductCollectionQuery({
     variables,
   });
-  let products = mapEdgesToItems(data?.products);
 
   useEffect(() => {
     if (setCounter) {
       setCounter(data?.products?.totalCount || 0);
     }
   }, [setCounter, data?.products?.totalCount]);
+
+  useEffect(() => {
+    let productsFetch = mapEdgesToItems(data?.products);
+
+    setProducts(productsFetch);
+  });
 
   const onLoadMore = () => {
     return fetchMore({
@@ -81,29 +103,21 @@ export function ProductCollection({
       </Text>
     );
   }
-  const productsProcessed = products.slice(products.length - 4);
+
   return (
     <div>
       <ul
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12"
         data-testid="productsList"
       >
-        {productsProcessed.map((product) => {
+        {currentPosts.map((product) => {
           return <ProductCard key={product.id} product={product} />;
         })}
       </ul>
-      {/* {allowMore && (
-        <Pagination
-          onLoadMore={onLoadMore}
-          pageInfo={data?.products?.pageInfo}
-          itemsCount={data?.products?.edges.length}
-          totalCount={data?.products?.totalCount || undefined}
-        />
-      )} */}
       <button
         className="p-3 bg-indigo-600 text-white focus:ring hover:bg-indigo-800 "
         onClick={() => {
-          onLoadMore();
+          decrement();
         }}
       >
         Preious
@@ -112,7 +126,7 @@ export function ProductCollection({
         className="p-3 bg-indigo-600 text-white focus:ring hover:bg-indigo-800 "
         onClick={() => {
           onLoadMore();
-          console.log(onLoadMore());
+          increment();
         }}
       >
         Next
