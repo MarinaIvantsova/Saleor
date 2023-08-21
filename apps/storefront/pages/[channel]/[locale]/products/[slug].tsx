@@ -28,8 +28,11 @@ import {
 } from "@/saleor/api";
 import { serverApolloClient } from "@/lib/auth/useAuthenticatedApolloClient";
 import { useUser } from "@/lib/useUser";
+
+
 import { AUTH_NAME_STATES, PopupContext } from "@/components/LoginPopup/popupContext";
 import { useSaleorAuthContext } from "@/lib/auth";
+
 
 export type OptionalQuery = {
   variant?: string;
@@ -82,6 +85,16 @@ function ProductPage({ product }: InferGetStaticPropsType<typeof getStaticProps>
   const [addProductToCheckout] = useCheckoutAddProductLineMutation();
   const [loadingAddToCheckout, setLoadingAddToCheckout] = useState(false);
   const [addToCartError, setAddToCartError] = useState("");
+
+  const { setAuthState, wasUserIconClicked } = useContext(PopupContext);
+  const { isAuthenticating } = useSaleorAuthContext();
+  const [wasProductAdded, setProductAdded] = useState(false);
+
+  useEffect(() => {
+    if (isAuthenticating && wasProductAdded && !wasUserIconClicked) {
+      void addToCartAfterLogin();
+    }
+  }, [isAuthenticating]);
 
   const { setAuthState, wasUserIconClicked } = useContext(PopupContext);
   const { isAuthenticating } = useSaleorAuthContext();

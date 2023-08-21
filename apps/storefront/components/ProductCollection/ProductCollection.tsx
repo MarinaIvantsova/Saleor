@@ -1,5 +1,5 @@
 import { Text } from "@saleor/ui-kit";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useIntl } from "react-intl";
 
 import { mapEdgesToItems } from "@/lib/maps";
@@ -38,6 +38,25 @@ export function ProductCollection({
   const t = useIntl();
   const { query } = useRegions();
 
+  let [products, setProducts] = useState([]);
+  let [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage] = useState(4);
+
+  const indexOfLastPost = currentPage * productsPerPage;
+  const indexOfFirstPost = indexOfLastPost - productsPerPage;
+  const currentPosts = products.slice(indexOfFirstPost, indexOfLastPost);
+
+  const decrement = () => {
+    if (currentPage !== 1) {
+      setCurrentPage((currentPage -= 1));
+    }
+  };
+  const increment = () => {
+    if (currentPage !== Math.ceil(products.length / productsPerPage)) {
+      setCurrentPage((currentPage += 1));
+    }
+  };
+
   const variables: ProductCollectionQueryVariables = {
     filter,
     first: perPage,
@@ -61,6 +80,12 @@ export function ProductCollection({
     }
   }, [setCounter, data?.products?.totalCount]);
 
+  useEffect(() => {
+    let productsFetch = mapEdgesToItems(data?.products);
+
+    setProducts(productsFetch);
+  }, [data?.products]);
+
   const onLoadMore = () => {
     return fetchMore({
       variables: {
@@ -72,7 +97,6 @@ export function ProductCollection({
   if (loading) return <Spinner />;
   if (error) return <p>Error</p>;
 
-  const products = mapEdgesToItems(data?.products);
   if (products.length === 0) {
     return (
       <Text size="xl" color="secondary" data-testid="noResultsText">
@@ -80,24 +104,34 @@ export function ProductCollection({
       </Text>
     );
   }
+
   return (
     <div>
       <ul
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12"
         data-testid="productsList"
       >
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+        {currentPosts.map((product) => {
+          return <ProductCard key={product.id} product={product} />;
+        })}
       </ul>
-      {allowMore && (
-        <Pagination
-          onLoadMore={onLoadMore}
-          pageInfo={data?.products?.pageInfo}
-          itemsCount={data?.products?.edges.length}
-          totalCount={data?.products?.totalCount || undefined}
-        />
-      )}
+      <button
+        className="p-3 bg-indigo-600 text-white focus:ring hover:bg-indigo-800 "
+        onClick={() => {
+          decrement();
+        }}
+      >
+        Preious
+      </button>
+      <button
+        className="p-3 bg-indigo-600 text-white focus:ring hover:bg-indigo-800 "
+        onClick={() => {
+          onLoadMore();
+          increment();
+        }}
+      >
+        Next
+      </button>
     </div>
   );
 }
