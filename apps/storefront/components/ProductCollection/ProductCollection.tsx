@@ -84,7 +84,7 @@ export function ProductCollection({
     let productsFetch = mapEdgesToItems(data?.products);
 
     setProducts(productsFetch);
-  });
+  }, [data?.products]);
 
   const onLoadMore = () => {
     return fetchMore({
