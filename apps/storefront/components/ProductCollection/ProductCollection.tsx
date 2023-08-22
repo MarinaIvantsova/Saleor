@@ -1,5 +1,5 @@
 import { Text } from "@saleor/ui-kit";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useIntl } from "react-intl";
 
 import { mapEdgesToItems } from "@/lib/maps";
@@ -16,6 +16,7 @@ import { ProductCard } from "../ProductCard";
 import { useRegions } from "../RegionsProvider";
 import { Spinner } from "../Spinner";
 import { messages } from "../translations";
+import SliderPagination from "../ProductCard/SliderPagination";
 
 export interface ProductCollectionProps {
   filter?: ProductFilterInput;
@@ -24,6 +25,7 @@ export interface ProductCollectionProps {
     direction?: OrderDirection;
   };
   allowMore?: boolean;
+  allowPagination: boolean;
   perPage?: number;
   setCounter?: (value: number) => void;
 }
@@ -33,11 +35,10 @@ export function ProductCollection({
   sortBy,
   setCounter,
   allowMore = true,
+  allowPagination = true,
   perPage = 4,
 }: ProductCollectionProps) {
-  const t = useIntl();
   const { query } = useRegions();
-
   const variables: ProductCollectionQueryVariables = {
     filter,
     first: perPage,
@@ -53,6 +54,28 @@ export function ProductCollection({
   const { loading, error, data, fetchMore } = useProductCollectionQuery({
     variables,
   });
+  const t = useIntl();
+
+  const [products, setProducts] = useState(mapEdgesToItems(data?.products));
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage] = useState(4);
+
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+
+  const paginate = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const decrement = () => {
+    if (currentPage !== 1) {
+      setCurrentPage((prevPage) => prevPage - 1);
+    }
+  };
+  const increment = () => {
+    setCurrentPage((prev) => prev + 1);
+  };
 
   useEffect(() => {
     if (setCounter) {
@@ -67,11 +90,14 @@ export function ProductCollection({
       },
     });
   };
+  useEffect(() => {
+    const productsFetch = mapEdgesToItems(data?.products);
+    setProducts(productsFetch);
+  }, [data?.products]);
 
   if (loading) return <Spinner />;
   if (error) return <p>Error</p>;
 
-  const products = mapEdgesToItems(data?.products);
   if (products.length === 0) {
     return (
       <Text size="xl" color="secondary" data-testid="noResultsText">
@@ -85,7 +111,7 @@ export function ProductCollection({
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12"
         data-testid="productsList"
       >
-        {products.map((product) => (
+        {currentProducts.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </ul>
@@ -95,6 +121,17 @@ export function ProductCollection({
           pageInfo={data?.products?.pageInfo}
           itemsCount={data?.products?.edges.length}
           totalCount={data?.products?.totalCount || undefined}
+        />
+      )}
+      {allowPagination && (
+        <SliderPagination
+          productsPerPage={productsPerPage}
+          totalProducts={products.length}
+          currentPage={currentPage}
+          decrement={decrement}
+          increment={increment}
+          onLoadMore={onLoadMore}
+          paginate={paginate}
         />
       )}
     </div>
