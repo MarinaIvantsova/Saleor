@@ -23,17 +23,21 @@ function SliderPagination({
     pageNumbers.push(i);
   }
 
+  function getButtons(btnName: string, onClickFunction: () => void) {
+    return (
+      <li
+        className="text-base font-semibold text-white bg-blue-500 py-2 px-4 rounded-lg cursor-pointer transition duration-500 ease-in-out "
+        onClick={onClickFunction}
+      >
+        {btnName}
+      </li>
+    );
+  }
+
   return (
     <div>
       <ul className="flex justify-center items-center mt-[50px] gap-[20px]">
-        <li
-          className="text-base font-semibold text-white bg-blue-500 py-2 px-4 rounded-lg cursor-pointer transition duration-500 ease-in-out "
-          onClick={() => {
-            decrement();
-          }}
-        >
-          Preious
-        </li>
+        {getButtons("Previous", decrement)}
         {pageNumbers.map((number) => (
           <li
             key={number}
@@ -46,15 +50,10 @@ function SliderPagination({
             {number}
           </li>
         ))}
-        <li
-          className="text-base font-semibold text-white bg-blue-500 py-2 px-4 rounded-lg cursor-pointer transition duration-500 ease-in-out "
-          onClick={() => {
-            increment();
-            onLoadMore();
-          }}
-        >
-          Next
-        </li>
+        {getButtons("Next", () => {
+          increment();
+          onLoadMore();
+        })}
       </ul>
     </div>
   );
