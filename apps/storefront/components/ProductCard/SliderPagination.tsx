@@ -21,15 +21,27 @@ function SliderPagination({
   const pageNumbers = [];
   const commonClassNamePagination =
     "text-base font-semibold  py-2 px-4 rounded-lg cursor-pointer transition duration-500 ease-in-out";
+  const commonClassNameActive = "!text-white bg-blue-500";
+  const numberPageColor = "text-blue-500 bg-white";
 
   for (let i = 1; i <= Math.ceil(totalProducts / productsPerPage); i++) {
     pageNumbers.push(i);
   }
 
-  function getButton(btnName: string, onClickFunction: () => void) {
+  function getButton(
+    btnName: string | number,
+    onClickFunction?: () => void,
+    btnColor?: string,
+    key?: number
+  ) {
     return (
       <li
-        className={clsx(commonClassNamePagination, "text-white bg-blue-500")}
+        key={key}
+        className={clsx(
+          commonClassNamePagination,
+          btnColor,
+          btnName === currentPage && commonClassNameActive
+        )}
         onClick={onClickFunction}
       >
         {btnName}
@@ -39,24 +51,18 @@ function SliderPagination({
 
   return (
     <ul className="flex justify-center items-center mt-[50px] gap-[20px]">
-      {getButton("Previous", decrement)}
-      {pageNumbers.map((number) => (
-        <li
-          key={number}
-          onClick={() => setCurrentPage(number)}
-          className={clsx(
-            commonClassNamePagination,
-            "text-blue-500 bg-white",
-            number === currentPage && "!text-white bg-blue-500"
-          )}
-        >
-          {number}
-        </li>
-      ))}
-      {getButton("Next", () => {
-        increment();
-        onLoadMore();
-      })}
+      {getButton("Previous", decrement, commonClassNameActive)}
+      {pageNumbers.map((numberPage) =>
+        getButton(numberPage, () => setCurrentPage(numberPage), numberPageColor, numberPage)
+      )}
+      {getButton(
+        "Next",
+        () => {
+          increment();
+          onLoadMore();
+        },
+        commonClassNameActive
+      )}
     </ul>
   );
 }
