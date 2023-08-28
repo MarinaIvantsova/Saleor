@@ -76,10 +76,8 @@ export function ProductCollection({
   };
 
   const increment = () => {
-    if (dataTotal) {
-      if (currentPage < Math.ceil(dataTotal / productsPerPage)) {
-        setCurrentPage((prev) => prev + 1);
-      }
+    if (dataTotal && currentPage < Math.ceil(dataTotal / productsPerPage)) {
+      setCurrentPage((prev) => prev + 1);
     }
   };
 
