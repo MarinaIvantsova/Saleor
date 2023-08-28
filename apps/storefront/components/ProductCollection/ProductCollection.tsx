@@ -59,6 +59,7 @@ export function ProductCollection({
   const [products, setProducts] = useState(mapEdgesToItems(data?.products));
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(4);
+  const [dataTotal, setDataTotal] = useState(data?.products?.totalCount);
 
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
@@ -73,9 +74,16 @@ export function ProductCollection({
       setCurrentPage((prevPage) => prevPage - 1);
     }
   };
+
   const increment = () => {
-    setCurrentPage((prev) => prev + 1);
+    dataTotal &&
+      currentPage < Math.ceil(dataTotal / productsPerPage) &&
+      setCurrentPage((prev) => prev + 1);
   };
+
+  useEffect(() => {
+    data?.products && setDataTotal(data.products.totalCount);
+  }, [data]);
 
   useEffect(() => {
     if (setCounter) {
