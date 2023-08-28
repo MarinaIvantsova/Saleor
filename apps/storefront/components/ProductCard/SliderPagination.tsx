@@ -1,6 +1,11 @@
 import clsx from "clsx";
 import React from "react";
 
+const commonClassNamePagination =
+  "text-base font-semibold  py-2 px-4 rounded-lg cursor-pointer transition duration-500 ease-in-out";
+const commonClassNameActive = "!text-white bg-blue-500";
+const numberPageColor = "text-blue-500 bg-white";
+
 function SliderPagination({
   productsPerPage,
   totalProducts,
@@ -19,10 +24,6 @@ function SliderPagination({
   setCurrentPage: (pageNumber: number) => void;
 }) {
   const pageNumbers = [];
-  const commonClassNamePagination =
-    "text-base font-semibold  py-2 px-4 rounded-lg cursor-pointer transition duration-500 ease-in-out";
-  const commonClassNameActive = "!text-white bg-blue-500";
-  const numberPageColor = "text-blue-500 bg-white";
 
   for (let i = 1; i <= Math.ceil(totalProducts / productsPerPage); i++) {
     pageNumbers.push(i);
