@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const commonClassNamePagination =
   "text-base font-semibold  py-2 px-4 rounded-lg cursor-pointer transition duration-500 ease-in-out";
@@ -23,11 +23,15 @@ function SliderPagination({
   onLoadMore: () => void;
   setCurrentPage: (pageNumber: number) => void;
 }) {
-  const pageNumbers = [];
+  const [pageNumbers, setPageNumbers] = useState<Array<number>>([]);
 
-  for (let i = 1; i <= Math.ceil(totalProducts / productsPerPage); i++) {
-    pageNumbers.push(i);
-  }
+  useEffect(() => {
+    const newPageNumbers: Array<number> = [];
+    for (let i = 1; i <= Math.ceil(totalProducts / productsPerPage); i++) {
+      newPageNumbers.push(i);
+    }
+    setPageNumbers(newPageNumbers);
+  }, [totalProducts]);
 
   function getButton(
     btnName: string | number,
