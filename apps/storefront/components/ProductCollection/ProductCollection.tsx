@@ -25,7 +25,7 @@ export interface ProductCollectionProps {
     direction?: OrderDirection;
   };
   allowMore?: boolean;
-  allowPagination: boolean;
+  allowPagination?: boolean;
   perPage?: number;
   setCounter?: (value: number) => void;
 }
@@ -35,9 +35,10 @@ export function ProductCollection({
   sortBy,
   setCounter,
   allowMore = true,
-  allowPagination = true,
+  allowPagination,
   perPage = 4,
 }: ProductCollectionProps) {
+  const [productsPerPage] = useState(4);
   const { query } = useRegions();
   const variables: ProductCollectionQueryVariables = {
     filter,
@@ -55,19 +56,27 @@ export function ProductCollection({
     variables,
   });
   const t = useIntl();
-
   const [products, setProducts] = useState(mapEdgesToItems(data?.products));
   const [currentPage, setCurrentPage] = useState(1);
-  const [productsPerPage] = useState(4);
   const [dataTotal, setDataTotal] = useState(data?.products?.totalCount);
 
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
 
-  const paginate = (pageNumber: number) => {
-    setCurrentPage(pageNumber);
-  };
+  useEffect(() => {
+    if (setCounter) {
+      setCounter(data?.products?.totalCount || 0);
+    }
+  }, [setCounter, data?.products?.totalCount]);
+
+  useEffect(() => {
+    const productsFetch = mapEdgesToItems(data?.products);
+    setProducts(productsFetch);
+    if (data?.products) {
+      setDataTotal(data.products.totalCount);
+    }
+  }, [data]);
 
   const decrement = () => {
     if (currentPage !== 1) {
@@ -81,18 +90,6 @@ export function ProductCollection({
     }
   };
 
-  useEffect(() => {
-    if (data?.products) {
-      setDataTotal(data.products.totalCount);
-    }
-  }, [data]);
-
-  useEffect(() => {
-    if (setCounter) {
-      setCounter(data?.products?.totalCount || 0);
-    }
-  }, [setCounter, data?.products?.totalCount]);
-
   const onLoadMore = () => {
     return fetchMore({
       variables: {
@@ -100,10 +97,6 @@ export function ProductCollection({
       },
     });
   };
-  useEffect(() => {
-    const productsFetch = mapEdgesToItems(data?.products);
-    setProducts(productsFetch);
-  }, [data?.products]);
 
   if (loading) return <Spinner />;
   if (error) return <p>Error</p>;
@@ -133,6 +126,7 @@ export function ProductCollection({
           totalCount={data?.products?.totalCount || undefined}
         />
       )}
+
       {allowPagination && (
         <SliderPagination
           productsPerPage={productsPerPage}
@@ -141,7 +135,7 @@ export function ProductCollection({
           decrement={decrement}
           increment={increment}
           onLoadMore={onLoadMore}
-          paginate={paginate}
+          setCurrentPage={setCurrentPage}
         />
       )}
     </div>

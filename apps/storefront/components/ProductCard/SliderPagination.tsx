@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import React from "react";
 
 function SliderPagination({
@@ -7,7 +8,7 @@ function SliderPagination({
   decrement,
   increment,
   onLoadMore,
-  paginate,
+  setCurrentPage,
 }: {
   productsPerPage: number;
   totalProducts: number;
@@ -15,47 +16,45 @@ function SliderPagination({
   decrement: () => void;
   increment: () => void;
   onLoadMore: () => void;
-  paginate: (pageNumber: number) => void;
+  setCurrentPage: (pageNumber: number) => void;
 }) {
   const pageNumbers = [];
+  const commonClassName =
+    "text-base font-semibold  py-2 px-4 rounded-lg cursor-pointer transition duration-500 ease-in-out";
 
   for (let i = 1; i <= Math.ceil(totalProducts / productsPerPage); i++) {
     pageNumbers.push(i);
   }
 
-  function getButtons(btnName: string, onClickFunction: () => void) {
+  function getButton(btnName: string, onClickFunction: () => void) {
     return (
-      <li
-        className="text-base font-semibold text-white bg-blue-500 py-2 px-4 rounded-lg cursor-pointer transition duration-500 ease-in-out "
-        onClick={onClickFunction}
-      >
+      <li className={clsx(commonClassName, "text-white bg-blue-500")} onClick={onClickFunction}>
         {btnName}
       </li>
     );
   }
 
   return (
-    <div>
-      <ul className="flex justify-center items-center mt-[50px] gap-[20px]">
-        {getButtons("Previous", decrement)}
-        {pageNumbers.map((number) => (
-          <li
-            key={number}
-            onClick={() => paginate(number)}
-            className={
-              `text-base font-semibold text-blue-500 bg-white py-2 px-4 rounded-lg cursor-pointer transition duration-500 ease-in-out
-              ` + (number === currentPage ? "!text-white bg-blue-500" : "")
-            }
-          >
-            {number}
-          </li>
-        ))}
-        {getButtons("Next", () => {
-          increment();
-          onLoadMore();
-        })}
-      </ul>
-    </div>
+    <ul className="flex justify-center items-center mt-[50px] gap-[20px]">
+      {getButton("Previous", decrement)}
+      {pageNumbers.map((number) => (
+        <li
+          key={number}
+          onClick={() => setCurrentPage(number)}
+          className={clsx(
+            commonClassName,
+            "text-blue-500 bg-white",
+            number === currentPage && "!text-white bg-blue-500"
+          )}
+        >
+          {number}
+        </li>
+      ))}
+      {getButton("Next", () => {
+        increment();
+        onLoadMore();
+      })}
+    </ul>
   );
 }
 
