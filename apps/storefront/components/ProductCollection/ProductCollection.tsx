@@ -76,13 +76,17 @@ export function ProductCollection({
   };
 
   const increment = () => {
-    dataTotal &&
-      currentPage < Math.ceil(dataTotal / productsPerPage) &&
-      setCurrentPage((prev) => prev + 1);
+    if (dataTotal) {
+      if (currentPage < Math.ceil(dataTotal / productsPerPage)) {
+        setCurrentPage((prev) => prev + 1);
+      }
+    }
   };
 
   useEffect(() => {
-    data?.products && setDataTotal(data.products.totalCount);
+    if (data?.products) {
+      setDataTotal(data.products.totalCount);
+    }
   }, [data]);
 
   useEffect(() => {
