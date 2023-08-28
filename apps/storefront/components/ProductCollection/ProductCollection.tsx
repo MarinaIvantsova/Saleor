@@ -17,6 +17,7 @@ import { useRegions } from "../RegionsProvider";
 import { Spinner } from "../Spinner";
 import { messages } from "../translations";
 import SliderPagination from "../ProductCard/SliderPagination";
+const PRODUCTS_PER_PAGE = 4;
 
 export interface ProductCollectionProps {
   filter?: ProductFilterInput;
@@ -38,7 +39,6 @@ export function ProductCollection({
   allowPagination,
   perPage = 4,
 }: ProductCollectionProps) {
-  const [productsPerPage] = useState(4);
   const { query } = useRegions();
   const variables: ProductCollectionQueryVariables = {
     filter,
@@ -60,8 +60,8 @@ export function ProductCollection({
   const [currentPage, setCurrentPage] = useState(1);
   const [dataTotal, setDataTotal] = useState(data?.products?.totalCount);
 
-  const indexOfLastProduct = currentPage * productsPerPage;
-  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const indexOfLastProduct = currentPage * PRODUCTS_PER_PAGE;
+  const indexOfFirstProduct = indexOfLastProduct - PRODUCTS_PER_PAGE;
   const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
 
   useEffect(() => {
@@ -85,7 +85,7 @@ export function ProductCollection({
   };
 
   const increment = () => {
-    if (dataTotal && currentPage < Math.ceil(dataTotal / productsPerPage)) {
+    if (dataTotal && currentPage < Math.ceil(dataTotal / PRODUCTS_PER_PAGE)) {
       setCurrentPage((prev) => prev + 1);
     }
   };
@@ -129,7 +129,7 @@ export function ProductCollection({
 
       {allowPagination && (
         <SliderPagination
-          productsPerPage={productsPerPage}
+          productsPerPage={PRODUCTS_PER_PAGE}
           totalProducts={products.length}
           currentPage={currentPage}
           decrement={decrement}
