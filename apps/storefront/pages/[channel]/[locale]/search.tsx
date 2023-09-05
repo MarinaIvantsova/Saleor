@@ -35,7 +35,7 @@ function SearchPage() {
         onChange={(e) => setSearchQuery(e.target.value, { scroll: false, shallow: true })}
         data-testid="searchInput"
       />
-      <ProductCollection filter={debouncedFilter} />
+      <ProductCollection filter={debouncedFilter} allowMore={false} allowPagination />
     </main>
   );
 }
