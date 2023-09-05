@@ -27,7 +27,6 @@ export interface ProductCollectionProps {
   };
   allowMore?: boolean;
   allowPagination?: boolean;
-  perPage?: number;
   setCounter?: (value: number) => void;
 }
 
@@ -37,12 +36,11 @@ export function ProductCollection({
   setCounter,
   allowMore,
   allowPagination,
-  perPage = 4,
 }: ProductCollectionProps) {
   const { query } = useRegions();
   const variables: ProductCollectionQueryVariables = {
     filter,
-    first: perPage,
+    first: PRODUCTS_PER_PAGE,
     ...query,
     ...(sortBy?.field &&
       sortBy?.direction && {

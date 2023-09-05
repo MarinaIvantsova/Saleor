@@ -39,7 +39,7 @@ function SliderPagination({
         className={clsx(
           "text-base font-semibold py-2 px-4 rounded-lg cursor-pointer transition duration-500 ease-in-out",
           btnName === currentPage || controlButton
-            ? "!text-white bg-blue-500"
+            ? "text-white bg-blue-500"
             : "text-blue-500 bg-white"
         )}
         onClick={onClickFunction}
