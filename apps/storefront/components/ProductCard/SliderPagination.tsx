@@ -1,11 +1,6 @@
 import clsx from "clsx";
 import React, { useEffect, useState } from "react";
 
-const commonClassNamePagination =
-  "text-base font-semibold  py-2 px-4 rounded-lg cursor-pointer transition duration-500 ease-in-out";
-const commonClassNameActive = "!text-white bg-blue-500";
-const numberPageColor = "text-blue-500 bg-white";
-
 function SliderPagination({
   productsPerPage,
   totalProducts,
@@ -35,17 +30,17 @@ function SliderPagination({
 
   function getButton(
     btnName: string | number,
-    onClickFunction?: () => void,
-    btnColor?: string,
-    key?: number
+    onClickFunction: () => void,
+    controlButton?: boolean
   ) {
     return (
       <li
-        key={key}
+        key={btnName}
         className={clsx(
-          commonClassNamePagination,
-          btnColor,
-          btnName === currentPage && commonClassNameActive
+          "text-base font-semibold py-2 px-4 rounded-lg cursor-pointer transition duration-500 ease-in-out",
+          btnName === currentPage || controlButton
+            ? "!text-white bg-blue-500"
+            : "text-blue-500 bg-white"
         )}
         onClick={onClickFunction}
       >
@@ -56,17 +51,15 @@ function SliderPagination({
 
   return (
     <ul className="flex justify-center items-center mt-[50px] gap-[20px]">
-      {getButton("Previous", decrement, commonClassNameActive)}
-      {pageNumbers.map((numberPage) =>
-        getButton(numberPage, () => setCurrentPage(numberPage), numberPageColor, numberPage)
-      )}
+      {getButton("Previous", decrement, true)}
+      {pageNumbers.map((numberPage) => getButton(numberPage, () => setCurrentPage(numberPage)))}
       {getButton(
         "Next",
         () => {
           increment();
           onLoadMore();
         },
-        commonClassNameActive
+        true
       )}
     </ul>
   );

@@ -35,7 +35,7 @@ export function ProductCollection({
   filter,
   sortBy,
   setCounter,
-  allowMore = true,
+  allowMore,
   allowPagination,
   perPage = 4,
 }: ProductCollectionProps) {
