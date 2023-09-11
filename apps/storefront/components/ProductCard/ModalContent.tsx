@@ -1,7 +1,6 @@
-import checkout from "pages/[channel]/[locale]/checkout";
 import React from "react";
 // @ts-ignore
-function ModalContent({ onClose }) {
+function ModalContent({ onClose }: { onClose: () => void }) {
   const style = {
     backgroundColor: "red",
     color: "black",
@@ -9,13 +8,13 @@ function ModalContent({ onClose }) {
     border: "1px solid black",
   };
 
-  console.log("Hello");
-  console.log(document.getElementById("my-portal"));
   return (
     <>
       <div style={style}>
         <p> Hi</p>
-        <button onClick={onClose}>Close</button>
+        <button type="button" onClick={onClose}>
+          Close
+        </button>
       </div>
     </>
   );

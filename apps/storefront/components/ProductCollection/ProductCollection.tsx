@@ -17,7 +17,7 @@ import { useRegions } from "../RegionsProvider";
 import { Spinner } from "../Spinner";
 import { messages } from "../translations";
 import SliderPagination from "../ProductCard/SliderPagination";
-const PRODUCTS_PER_PAGE = 4;
+// const PRODUCTS_PER_PAGE = 4;
 
 export interface ProductCollectionProps {
   filter?: ProductFilterInput;
@@ -28,6 +28,7 @@ export interface ProductCollectionProps {
   allowMore?: boolean;
   allowPagination?: boolean;
   setCounter?: (value: number) => void;
+  perPage?: number;
 }
 
 export function ProductCollection({
@@ -36,11 +37,12 @@ export function ProductCollection({
   setCounter,
   allowMore,
   allowPagination,
+  perPage = 4,
 }: ProductCollectionProps) {
   const { query } = useRegions();
   const variables: ProductCollectionQueryVariables = {
     filter,
-    first: PRODUCTS_PER_PAGE,
+    first: perPage,
     ...query,
     ...(sortBy?.field &&
       sortBy?.direction && {
@@ -58,8 +60,8 @@ export function ProductCollection({
   const [currentPage, setCurrentPage] = useState(1);
   const [dataTotal, setDataTotal] = useState(data?.products?.totalCount);
 
-  const indexOfLastProduct = currentPage * PRODUCTS_PER_PAGE;
-  const indexOfFirstProduct = indexOfLastProduct - PRODUCTS_PER_PAGE;
+  const indexOfLastProduct = currentPage * perPage;
+  const indexOfFirstProduct = indexOfLastProduct - perPage;
   const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
 
   useEffect(() => {
@@ -83,7 +85,7 @@ export function ProductCollection({
   };
 
   const increment = () => {
-    if (dataTotal && currentPage < Math.ceil(dataTotal / PRODUCTS_PER_PAGE)) {
+    if (dataTotal && currentPage < Math.ceil(dataTotal / perPage)) {
       setCurrentPage((prev) => prev + 1);
     }
   };
@@ -127,7 +129,7 @@ export function ProductCollection({
 
       {allowPagination && (
         <SliderPagination
-          productsPerPage={PRODUCTS_PER_PAGE}
+          productsPerPage={perPage}
           totalProducts={products.length}
           currentPage={currentPage}
           decrement={decrement}

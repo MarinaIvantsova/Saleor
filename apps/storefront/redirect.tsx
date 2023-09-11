@@ -1,4 +1,5 @@
 import { useProductCollectionQuery } from "@/saleor/api";
+import Image from "next/image";
 
 const mockVariables = {
   channel: "default-channel",
@@ -23,7 +24,7 @@ function RedirectPage() {
       {data?.products?.edges.map((variant) =>
         // @ts-ignore
         variant.node.media.map((productImage) => (
-          <img
+          <Image
             src={productImage.url}
             width={250}
             height={200}

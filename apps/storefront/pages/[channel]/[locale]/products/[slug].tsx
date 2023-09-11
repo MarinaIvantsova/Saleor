@@ -1,6 +1,6 @@
 import { ApolloQueryResult } from "@apollo/client";
 import clsx from "clsx";
-import { GetStaticPaths, GetStaticPropsContext, InferGetStaticPropsType } from "next";
+import { GetStaticPaths, GetStaticPropsContext } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Custom404 from "pages/404";
@@ -20,15 +20,17 @@ import { contextToRegionQuery } from "@/lib/regions";
 import { translate } from "@/lib/translations";
 import {
   CheckoutError,
+  PriceFragment,
   ProductBySlugDocument,
   ProductBySlugQuery,
   ProductBySlugQueryVariables,
+  ProductDetailsFragment,
   useCheckoutAddProductLineMutation,
   useCreateCheckoutMutation,
 } from "@/saleor/api";
 import { serverApolloClient } from "@/lib/auth/useAuthenticatedApolloClient";
 import { useUser } from "@/lib/useUser";
-import { VariantSelectorProps } from "@/components/product/VariantSelector";
+// import { VariantSelectorProps } from "@/components/product/VariantSelector";
 
 export type OptionalQuery = {
   variant?: string;
@@ -68,7 +70,8 @@ export const getStaticProps = async (
   };
 };
 // @ts-ignore
-function ProductPage({ product }: VariantSelectorProps<typeof getStaticProps>) {
+// function ProductPage({ product }: VariantSelectorProps<typeof getStaticProps>) {
+function ProductPage({ product }: { product: ProductDetailsFragment }) {
   const router = useRouter();
   const paths = usePaths();
   const t = useIntl();
@@ -91,7 +94,9 @@ function ProductPage({ product }: VariantSelectorProps<typeof getStaticProps>) {
   const selectedVariantID = getSelectedVariantID(product, router);
 
   // @ts-ignore
-  const selectedVariant = product?.variants?.find((v) => v?.id === selectedVariantID) || undefined;
+  const selectedVariant: ProductVariantDetailsFragment =
+    product?.variants?.find((v: { id: string | undefined }) => v?.id === selectedVariantID) ||
+    undefined;
 
   const onAddToCart = async () => {
     // Clear previous error messages
@@ -161,7 +166,7 @@ function ProductPage({ product }: VariantSelectorProps<typeof getStaticProps>) {
 
   const description = translate(product, "description");
 
-  const price = product.pricing?.priceRange?.start?.gross;
+  const price: PriceFragment | undefined = product.pricing?.priceRange?.start?.gross;
   const shouldDisplayPrice = product.variants?.length === 1 && price;
 
   return (

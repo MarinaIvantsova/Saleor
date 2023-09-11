@@ -1,9 +1,7 @@
 import { PhotographIcon } from "@heroicons/react/outline";
 import Image from "next/legacy/image";
-import Link from "next/link";
 import React, { useState } from "react";
 
-import { usePaths } from "@/lib/paths";
 import { translate } from "@/lib/translations";
 import { ProductCardFragment } from "@/saleor/api";
 import { createPortal } from "react-dom";
@@ -28,7 +26,6 @@ const getCardSecondaryDescription = (product: ProductCardFragment) => {
 };
 
 export function ProductCard({ product }: ProductCardProps) {
-  const paths = usePaths();
   const secondaryDescription = getCardSecondaryDescription(product);
   const thumbnailUrl = product.media?.find((media) => media.type === "IMAGE")?.url;
   const [showModal, setShowModal] = useState(false);
@@ -41,13 +38,6 @@ export function ProductCard({ product }: ProductCardProps) {
           // @ts-ignore
           document.getElementById("my-portal")
         )}
-      {/* <Link
-        href={paths.products._slug(product.slug).$url()}
-        prefetch={false}
-        passHref
-        legacyBehavior
-      > */}
-      {/* href="pass" удален href из 46 строки*/}
       <a href="#">
         <div className="bg-main active:bg-brand w-full aspect-1">
           <div className="bg-white w-full h-full relative object-contain ">

@@ -26,6 +26,6 @@
     "noUncheckedIndexedAccess": false
   },
   "extends": "tsconfig/nextjs.json",
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "../storefront/pages/redirect.tsx"],
   "exclude": ["node_modules"]
 }
