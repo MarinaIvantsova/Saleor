@@ -70,7 +70,6 @@ export const getStaticProps = async (
   };
 };
 // @ts-ignore
-// function ProductPage({ product }: VariantSelectorProps<typeof getStaticProps>) {
 function ProductPage({ product }: { product: ProductDetailsFragment }) {
   const router = useRouter();
   const paths = usePaths();
